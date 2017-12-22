@@ -1,0 +1,8 @@
+<!-- Generated template for the TitleComponent component -->
+<div *ngIf="!showTitle" class="center-loader">
+  <ion-spinner name="crescent"></ion-spinner>
+</div>
+<div *ngIf="showTitle" class="center-title">
+  <div class="title-text">{{title}}</div>
+  <div class="subtitle-text">{{subtitle}}</div>
+</div>

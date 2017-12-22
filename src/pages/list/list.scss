@@ -1,0 +1,43 @@
+page-list {
+
+    .user-name {
+        font-size: 18px;
+        font-family: 'Lato';
+    }
+    
+    .error-message {
+        font-size: 18px;
+        font-family: 'Lato';
+        text-align: center;
+    }
+
+    .big-search {
+        font-size: 30px !important;
+    }
+
+    .info-subtitle {
+        margin-top: 10px;
+        font-size: 30px;
+        font-family: 'TruSemiFont';
+        text-transform: uppercase;
+    }
+
+    .info-title {
+            margin-top: 10px;
+            font-size: 50px;
+            font-family: 'TruSemiFont';
+            text-transform: uppercase;
+    }
+}
+
+ion-searchbar {
+    font-family: 'Lato';
+    transition: all ease 0.4s; 
+    height: 50px; 
+}
+
+.searchbar-input {
+    font-size: 15px !important;
+}
+
+

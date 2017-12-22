@@ -1,0 +1,8 @@
+<!-- Generated template for the UserItemComponent component -->
+<span [id]="'userItem_'+user.id" (click)="showUserMenu()">
+<ion-avatar *ngIf="detailed != 2" id="parent" class="small-pic">
+  <img [id]="'image_'+user.id">
+</ion-avatar>
+<a [@fadeInOut] class="nametext infofont">{{first_name}}</a>
+<h3 [@fadeInOut] class="captiontext infofont">{{name}}</h3>
+</span>

@@ -1,0 +1,98 @@
+page-control-panel {
+
+    .info-box {
+        text-align: center;
+        font-family: 'Lato';
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        // background-color: #34d873;
+        border-radius: 10px;
+        border: 1px solid white;
+        margin-bottom: 20px;
+    }
+
+    .info-box .title {
+        font-family: 'TruLato';
+    }
+
+    .info-box .text {
+        font-family: 'Avenir';
+    }
+
+}
+
+
+    .button-selection {
+        height: 100%;
+        width: 80%;
+        justify-content: center;
+        text-align: center;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+    }
+
+    .modal-box {
+        height: 100%;
+        width: 90%;
+        margin: auto;
+        margin-top: 50px;
+        justify-content: center;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .modal-button {
+        font-family: 'Lato';
+        border-radius: 25px;
+        font-size: 18px;
+        padding: 15px;
+        background-color: #886fe8;
+        color: white;
+        margin-bottom: 10px;
+        transform: scale(1);
+        transition: all ease 0.2s;
+    }
+
+    .modal-button:active {
+        transform: scale(0.9);
+    }
+
+    .modal-title {
+        font-family: 'TruSemiFont';
+        font-size: 50px;
+        color: #886fe8;
+    }
+
+    .modal-subtitle {
+        font-family: 'Lato';
+        color: #886fe8;
+        font-size: 15px;
+    }
+
+    .modal-divider {
+        margin-bottom: 10px;
+    }
+
+    .modal-input {
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        width: 90%;
+        height: 60px;
+        margin: auto;
+        background-color: rgba(0, 0, 0, 0);
+        border-radius: 0;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .modal-input:focus {
+        // background-color: rgba(136,111,232, 0.2);
+        height: 80px;
+        padding: 5px;
+        border-radius: 0;
+        border: none;      
+    }

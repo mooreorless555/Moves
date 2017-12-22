@@ -1,0 +1,44 @@
+<!--
+  Generated template for the Friends page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='navbar'>
+    <ion-title>{{ui.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="add" tappable class="addBtn"><img id="plus" src="assets/img/plus_circle.png"/></div>
+  <info text="Tap to add friends from Facebook. Never lose track of the squad. If they accept your request, you'll be able to see which moves they're at in real-time!"></info>
+ <div class="minispace"></div>
+  <ion-list *ngIf='mUser.numFriendRequests > 0' [ngBusy]='busy'>
+    <ion-list-header class="lheader">
+      {{ui.info.title}} <span *ngIf='mUser.numFriendRequests > 0' class="specialnumber"> {{ mUser.numFriendRequests }}</span>
+    </ion-list-header>
+    <div *ngIf='mUser.friendRequestsListArr'>
+    <ion-item no-lines *ngFor="let pot of mUser.friendRequestsListArr">
+      <user-item [user]="pot"></user-item>
+      <button ion-button outline item-right (tap)='acceptFriend(pot.id)'>{{ui.info.status.a}}</button>
+    </ion-item>
+    </div>
+  </ion-list>
+
+  <ion-list *ngIf='friendsList.length > 0'>
+    <ion-list-header class="lheader">
+      {{ui.friends.title}} ({{friendsList.length}})
+    </ion-list-header>
+    <div *ngIf='friendsList'>
+    <ion-item no-lines *ngFor="let pot of friendsList">
+      <user-item (press)="userOptions(pot.id)" [user]="pot"></user-item>
+    </ion-item>
+    </div>
+  </ion-list>
+
+	<div class="space invisible">lol</div>
+</ion-content>

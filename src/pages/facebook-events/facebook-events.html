@@ -1,0 +1,32 @@
+<!--
+  Generated template for the FacebookEventsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="facebook">
+    <ion-title>Your Events</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <tit title="" subtitle="(This feature is still a work in progress.)"></tit>
+
+
+  <ion-card class="ripple" *ngFor="let event of eventsList" (click)="selectEvent(event)">
+  <ion-item>
+    <h1 class="event-text">{{event.name}}</h1>
+  </ion-item>
+</ion-card>
+
+</ion-content>
+
+<ion-footer>
+  <ion-navbar color='facebook'>
+    <button tappable (click)='closeModal()' class="closeBtn fb-color"><ion-icon name="arrow-down"></ion-icon></button>
+  </ion-navbar>
+</ion-footer>

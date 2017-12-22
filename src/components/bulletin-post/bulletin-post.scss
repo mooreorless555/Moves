@@ -1,0 +1,39 @@
+bulletin-post {
+
+    .b-post {
+        font-family: 'Lato';
+        font-size: 20px;
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .plus-one-badge {
+        font-size: 16px;
+        color: #58bb50;
+    }
+
+    .small-b-text {
+        font-size: 13px;
+        color: #888;
+    }
+
+    .side-btn {
+        font-family: 'Lato';
+    }
+
+    .big-side-btn {
+        font-family: 'MoveHeader';
+        font-size: 30px;
+        background-color: #58bb50;
+        color: white;
+    }
+
+    .small-avatar {
+        display: inline;
+        float: left;
+        width: 7%;
+        height: 7%;
+        border-radius: 10px;
+    }
+
+}

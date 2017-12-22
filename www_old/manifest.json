@@ -1,0 +1,13 @@
+{
+  "name": "Moves",
+  "short_name": "Moves",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#886FE8",
+  "theme_color": "#886FE8"
+}

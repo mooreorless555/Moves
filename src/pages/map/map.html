@@ -1,0 +1,36 @@
+<!--
+  Generated template for the Map page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar color='navbar'>
+    <ion-title>Map</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-searchbar id="mapSearch" [showCancelButton]="false" [animated]="true" (click)="repopulate()" class="search" [(ngModel)]="autocomplete.query" [showCancelButton]="true" (ionInput)="updateSearch()" (ionCancel)="dismiss()"
+    placeholder="Type address here...">
+  </ion-searchbar>
+  <ion-list class="map-overlay">
+    <ion-item class="map-list" no-lines *ngFor="let item of autocompleteItems; trackBy: trackAddresses" tappable (click)="chooseItem(item)">
+      <a style="color: white">{{ item.structured_formatting.main_text }}</a>
+      <a style="color: #dddddd; font-size: 12px;">{{ item.structured_formatting.secondary_text }}</a>
+    </ion-item>
+  </ion-list>
+  <img class="corner-emblem" src="assets/img/powered_by_google.png"/>
+  <div tappable (click)="dismiss()" #map id="map"></div>
+
+</ion-content>
+
+<ion-footer *ngIf="isModal == true">
+  <ion-navbar color='navbar'>
+    <button (click)='closeModal()' class="closeBtn"><ion-icon name="arrow-down"></ion-icon></button>
+  </ion-navbar>
+</ion-footer>

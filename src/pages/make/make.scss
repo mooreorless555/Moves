@@ -1,0 +1,163 @@
+page-make {
+
+    .classy-clean {
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 100%;
+        word-wrap: break-word;
+        text-align: center;
+        box-sizing: border-box;
+        border-radius: 3px;
+        color: #fff;      
+    }
+
+    // textarea, input {
+    //     border-radius: 10px;
+    //     background-color: rgba(0, 0, 0, 0);
+    //     padding-left: 0px;
+    //     padding-right: 0px;
+    //     transition: all ease 0.2s;
+    // }
+
+    .poster-input {
+        height: 100px;
+        border-radius: 0px !important;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        font-family: 'TruSemiFont';
+        border: none !important;
+        outline: none !important;
+        word-wrap: break-word;
+        transition: all ease 0.3s;
+    }
+
+    .poster-input:focus {
+        filter: brightness(110%);
+    }
+
+    .poster-input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .poster-input.desc {
+        justify-content: center;
+        font-family: 'Avenir';
+    }
+    
+    .poster-input.big {
+        font-size: 30px;
+    }
+
+    .poster-input.medium {
+        font-size: 20px;
+    }
+
+    .small-slides {
+        height: 100px;
+        max-height: 100px;
+        background-color: rgba(0,0,0,0);
+        // background-color: #886fe8;
+        transition: all ease 0.3s;
+    }
+
+    .small-slides.input {
+        transition: all ease 0.3s;
+    }
+    
+    .small-slides.input:hover{
+        filter: brightness(110%);
+    }
+
+    .small-slides.title {
+        font-family: 'TruSemiFont';
+    }
+
+    .small-slides.sub {
+        font-size: 12px;
+    }
+
+    .import-btn {
+        margin-top: 20px;
+        font-size: 15px;
+        width: 100%;
+        transform: scale(1);
+        transition: all ease 0.3s;
+    }
+
+    .import-btn:active {
+        transform: scale(0.9);
+    }
+
+
+    .big-logo {
+        font-size: 35px;
+    }
+
+    .facebook-event-text {
+        font-family: 'AvenirMedium';
+        margin-left: 5%;
+        opacity: 1;
+    }
+
+    .make-btn {
+        width: 100%;
+        background-color: #886fe8;
+        border-radius: 20px;
+        color: white;
+        padding: 15px;
+        font-size: 15px;
+        font-family: 'AvenirMedium';
+        transform: scale(1);
+        transition: all ease 0.2s;
+    }
+    
+
+    .make-btn:active {
+        transform: scale(0.8);
+    }
+
+
+    .makeInput {
+        background-color: #333;
+    }
+
+    .makeInput textarea:focus, input:focus {
+        // padding-top: 5px;
+        // padding-left: 8px !important;
+        // padding-right: 8px !important; 
+        // padding-bottom: 5px; 
+        // border-radius: 10px;    
+        // font-size: 30px;  
+        // background-color: rgba(136, 111, 232, 0.2);
+        outline: none;
+        // border-bottom: 3px solid white;
+    }
+
+    button:focus, ion-textarea:focus {
+        outline: none;
+    }
+
+    .spacer {
+        margin-bottom: 20px;
+    }
+
+    .big-numbers {
+        color: #f00;
+        font-size: 40px;
+    }
+
+    #capacity {
+        font-size: 40px;
+    }
+
+    ion-label {
+        color: #fff;
+    }
+
+    ion-segment-button {
+        font-size: 20px !important;
+    }
+
+}

@@ -1,0 +1,54 @@
+.map-component-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 50%;
+    /*make it pretty*/
+    background: #111;
+    color: #fff;
+    font-size: 35px;
+    width: 200px;
+    text-overflow: ellipsis;
+    box-shadow: 10px 10px 50px #000000;
+    border: solid 10px white;
+    font-family: 'MoveHeader'
+}
+
+.circle-avatar {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.image-circle {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.small-pic {
+    display: inline-block !important;
+    position: relative;
+    top: 15px;
+}
+
+.image-size {
+    height: 120% !important;
+    width: 120% !important;
+    margin-bottom: -50px !important;   
+}
+
+
+/*.map-component-item:active {
+    background-color: white;
+    transform: scale(1.8);
+}*/
+

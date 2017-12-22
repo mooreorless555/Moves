@@ -1,0 +1,16 @@
+<!-- Generated template for the CommentComponent component -->
+  <ion-item [id]='key' [@fadeInOut] ion-item text-wrap no-lines>
+    <!--<ion-avatar item-avatar item-left>
+      <div *ngIf="user != null"><img [src]="mUser.getPhoto(commentInfo.id).square"/>
+      <div class="nametext">{{commentInfo.name}}</div>
+      </div>
+    </ion-avatar>
+    <div class="captiontext">{{commentInfo.comment}}</div>-->
+<span id="commentItem">
+<ion-avatar class="small-pic">
+  <img class="image-size" [src]="photo">
+</ion-avatar>
+<h3 [@fIOText] class="captiontext infofont">{{comment}}</h3>
+</span>
+<a class="ntext">{{first_name}}</a><a class="ntext ttext">&nbsp;&nbsp;&nbsp;&nbsp;{{timesince}}&nbsp;&nbsp;&nbsp;&nbsp;({{clocktime}})</a>
+  </ion-item>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+  	<title>Segment</title>
+  	<link href='http://fonts.googleapis.com/css?family=Lato:400' rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" type="text/css" href="segment.css" />
+  </head>
+  <body>
+  <select class="segment-select">
+      <option value="1">None</option>
+      <option value="2">First</option>
+      <option value="3">Second</option>
+  </select>
+  <select class="segment-select">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+  </select>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="segment.js"></script>
+  <script type="text/javascript">
+      jQuery(function ($){
+           $(".segment-select").Segment();
+      });
+  </script>
+  </body>
+</html>

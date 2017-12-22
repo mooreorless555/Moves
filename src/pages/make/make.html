@@ -1,0 +1,222 @@
+<ion-header>
+  <ion-navbar color='navbar'>
+    <ion-title>
+      Make a Move
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div>
+    <tit title="MAKE A MOVE" [subtitle]="hello"></tit>
+  </div>
+    <button *ngIf="system.isAdmin(mUser.getFB().id)" tappable class="import-btn ripple" (click)="openFacebookModule()" ion-button wide color="facebook"><ion-icon class="big-logo" name="logo-facebook"></ion-icon><span class="facebook-event-text">Sync a Facebook Event</span></button>
+    
+    <info *ngIf="notifyAll" text="* = required field"></info>
+    <span id="formItems">
+
+    <ion-list-header>
+      1. General Details
+    </ion-list-header>
+
+<div class="small-slides input" style="background-color: #222222">
+    <input class="poster-input big" placeholder="Event Name*" autocorrect="on" autocomplete="true" type="text" [(ngModel)]="move.info.name" name="name" maxlength="50" required/>
+</div>
+    <!-- <info text="This is the name of the event and what others will see when you go live."></info> -->
+<div class="small-slides input" style="background-color: #222222">
+    <textarea class="poster-input desc" placeholder="Description" autocorrect="on" autocomplete="true" [(ngModel)]="move.info.extraInfo" name="extraInfo"></textarea>
+</div>
+    <!-- <info text="(Optional) This is the description of the event."></info> -->
+<div class="small-slides input" style="background-color: #222222">
+    <input class="poster-input medium"  placeholder="Place" autocorrect="on" autocomplete="true" type="text" [(ngModel)]="move.info.location" name="location" maxlength="50" required/>
+</div>
+    <!-- <info text="(Optional) 'Place' is a shorthand name of the place where your event is or will be. (e.g. My House) Moves will get your exact address for you!"></info> -->
+
+
+      <ion-item class="centertext" no-lines>
+        <ion-label>Capacity</ion-label>
+        <ion-input class="vertical" id="capacity" type="number" [(ngModel)]="move.info.capacity" name="capacity"></ion-input>
+      </ion-item>
+
+    <ion-item no-lines>
+      <ion-label *ngIf="move.info.isAnon">You're NOT Hosting</ion-label>
+      <ion-label *ngIf="!move.info.isAnon">You're Hosting</ion-label>
+      <ion-toggle color="primary"[(ngModel)]="!move.info.isAnon" (ionChange)="move.info.isAnon = !move.info.isAnon; move.info.isOpen = true" name="isAnon"></ion-toggle>
+    </ion-item>
+    
+    <!-- <info *ngIf="move.info.isAnon" text="You're anonymously reporting this move as happening but you also know that the move is indeed OPEN to others."></info>
+    <info *ngIf="!move.info.isAnon" text="You're hosting the move."></info> -->
+
+ <div @revealInOut style="max-height: 500px" *ngIf="!move.info.isAnon">
+    <ion-grid>
+      <ion-row>
+        <ion-col tappable width-50 class="capsule ripple" (click)="manageAliases()">
+                <span class="capsule-header">HOSTING AS</span>
+                <span class="capsule-content">{{this.userData.currentAlias}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!move.info.isAnon && system.isAdmin(mUser.getFB().id)">
+        <ion-col tappable width-50 class="capsule ripple" (click)="useCustomAlias()">
+                <span class="capsule-header">ADMIN: Choose Custom Alias</span>
+                <span class="capsule-content">{{this.userData.currentAlias}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col tappable width-50 class="capsule ripple" (click)="manageBadges()">
+                <span class="capsule-header">USING BADGE</span>
+                <span *ngIf="userData.currentBadge != 999" class="capsule-content"><img class="capsule-badge" [src]='currentBadgeImg'/></span>
+                <span *ngIf="userData.currentBadge == 999" class="capsule-content">None</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+    <!-- <ion-item no-lines *ngIf="!move.info.isAnon">
+    <!-- <ion-segment [(ngModel)]="move.info.visibility"  (ionChange)="visibilityChanged($event)">
+			<ion-segment-button value="1">
+				Open
+			</ion-segment-button>
+			<ion-segment-button value="2">
+				Private
+			</ion-segment-button>
+			<ion-segment-button value="3">
+				Secret
+			</ion-segment-button>
+		</ion-segment> -->
+
+      <!-- <ion-label *ngIf="move.info.isOpen">It's Open</ion-label>
+      <ion-label *ngIf="!move.info.isOpen">It's Private</ion-label>
+      <ion-toggle color="primary" checked="false" [(ngModel)]="move.info.isOpen" (ionChange)="move.info.isOpen ? true : false; unfocusAll()" name="isOpen"></ion-toggle> -->
+
+<ion-list-header>
+  2. OPTIONS (swipe/tap to change)
+</ion-list-header>
+
+<ion-slides pager class="small-slides" (ionSlideTap)="instantSlideChange($event)" (ionSlideDidChange)="visibilityChanged($event)">
+  <ion-slide style="background-color: #222">
+    <span class="small-slides title">OPEN</span>
+  </ion-slide>
+  <ion-slide style="background-color: #222">
+    <span class="small-slides title">PRIVATE</span>
+    <br>
+    <span class="small-slides sub">but still visible to all</span>
+  </ion-slide>
+  <ion-slide style="background-color: #222">
+    <span class="small-slides title">PRIVATE+</span>
+    <br>
+    <span class="small-slides sub">only visible to those invited</span>
+  </ion-slide>
+</ion-slides>
+
+    <!-- <info *ngIf="!move.info.isAnon && move.info.visibility == 1" text="Anybody on Moves will be able to see this event once you go live. (You can make it PRIVATE after it goes live, too)"></info>
+    <info *ngIf="move.info.visibility == 2" text="Everyone will still see this event, so this option is useful if you want others to know you're hosting a private event."></info>
+    <info *ngIf="move.info.visibility == 3" text="Only you and those you invite will be able to see this move, nobody else (You can also add or remove friends even after the move goes live)."></info> -->
+    <div @revealInOut style="max-height: 100px" *ngIf="move.info.visibility == 2 || move.info.visibility == 3">
+      <!-- HELLO FRIENDS -->
+    <ion-item no-lines>     
+      <button type="button" class="make-btn ripple" (click)="inviteFriends()"><span class="lower">Invite Friends</span></button>
+    </ion-item> 
+    </div>
+
+    <!-- <ion-list-header>
+      2. Options
+    </ion-list-header> -->
+
+   <ion-slides pager class="small-slides" (ionSlideTap)="instantSlideChange($event)" (ionSlideDidChange)="move.info.showAddress = (slideBoolChanged($event) == 0 ? true : false)">
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">SHOW ADDRESS</span>
+    </ion-slide>
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">DON'T SHOW ADDRESS</span>
+      <br>
+      <span class="small-slides sub">make sure people can still find it though</span>
+    </ion-slide>
+  </ion-slides> 
+
+    <!-- <ion-item no-lines>
+      <ion-label *ngIf="move.info.showAddress">Show the Address</ion-label>
+      <ion-label *ngIf="!move.info.showAddress">Hide the Address</ion-label>
+      <ion-toggle color="primary" checked="false" [(ngModel)]="move.info.showAddress" (ionChange)="unfocusAll()" name="showAddress"></ion-toggle>
+    </ion-item> -->
+
+    <!-- <info *ngIf="move.info.showAddress" text="Moves will show the exact address of your move by using GPS coordinates once you go live. (You can also switch this on and off at any time while the move is live.)"></info>
+    <info *ngIf="!move.info.showAddress" text="Moves will not show the exact address of your move by using GPS coordinates once you go live."></info> -->
+   <ion-slides pager class="small-slides" (ionSlideTap)="instantSlideChange($event)" (ionSlideDidChange)="rightHereRightNow = (slideBoolChanged($event) == 0 ? true : false); move.info.isPending = rightHereRightNow ? false : true">
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">HAPPENING RIGHT HERE, RIGHT NOW</span>
+    </ion-slide>
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">HAPPENING SOMETIME LATER</span>
+      <br>
+      <span class="small-slides sub">choose the time and location below</span>
+    </ion-slide>
+  </ion-slides> 
+   <!-- <ion-slides pager class="small-slides">
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">SHOW ADDRESS</span>
+    </ion-slide>
+    <ion-slide style="background-color: #826f28">
+      <span class="small-slides title">DON'T SHOW ADDRESS</span>
+      <span class="small-slides sub">(make sure people can still find it though)</span>
+    </ion-slide>
+  </ion-slides>  -->
+    
+    <!-- <ion-item no-lines>
+      <ion-label *ngIf="rightHereRightNow">Happening Here and Now</ion-label>
+      <ion-label *ngIf="!rightHereRightNow">Happening Sometime Later</ion-label>
+      <ion-toggle color="primary" checked="false" [(ngModel)]="rightHereRightNow" (ionChange)="unfocusAll(); move.info.isPending = rightHereRightNow ? false : true" name="isPending"></ion-toggle>
+    </ion-item> -->
+
+    <!-- <info *ngIf="rightHereRightNow" text="Once you Go Live your move will immediately go live at your current location. (This is often used if you're already at a party/event.)"></info>
+    <info *ngIf="!rightHereRightNow" text="You need to specify the actual address of where your event is going to happen (to use your current address, leave Location as 'Unspecified') as well as the time it is set to happen, and it needs to be either today or tomorrow."></info> -->
+
+    <div @revealExpandInOut style="max-height: 500px" *ngIf="move.info.isPending">
+       <ion-grid *ngIf="move.info.isPending">
+        <ion-row [ngBusy]="busy">
+          <ion-col tappable width-50 class="capsule ripple" (click)="selectLocation()">
+                  <span *ngIf="customAddress == 'Unspecified'"class="capsule-header">Choose a Location</span>
+                  <span *ngIf="customAddress != 'Unspecified'" class="capsule-content">{{customAddress}}</span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col tappable width-50 class="capsule ripple" (click)="pickTime()">
+                  <span class="capsule-header">START TIME</span>
+                  <span class="capsule-content">{{displayStartTime}} <span class="smalltext">{{displayDay}}</span></span>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+    </div>
+
+
+  <ion-slides pager @revealInOut *ngIf="move.info.visibility != 3" class="small-slides" (ionSlideTap)="instantSlideChange($event)" (ionSlideDidChange)="notifyAll = (slideBoolChanged($event) == 0 ? true : false)">
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">NOTIFY EVERYONE</span>
+      <br>
+      <span class="small-slides sub">everyone nearby will get notified when you post</span>
+    </ion-slide>
+    <ion-slide style="background-color: #222">
+      <span class="small-slides title">POST QUIETLY</span>
+      <br>
+      <span class="small-slides sub">nobody will be notified about the move going live</span>
+    </ion-slide>
+  </ion-slides> 
+
+
+        <!-- <ion-item *ngIf="move.info.visibility != 3" no-lines>
+            <ion-label *ngIf="notifyAll">Notify Everyone</ion-label>
+            <ion-label *ngIf="!notifyAll">Post Quietly</ion-label>
+            <ion-toggle color="primary" checked="true" [(ngModel)]="notifyAll" name="notifyAll"></ion-toggle>
+          </ion-item>
+      
+          <info *ngIf="notifyAll" text="When your move goes up, everyone will get a notification about it."></info>
+          <info *ngIf="!notifyAll" text="Nobody will be notified that your move has gone up."></info>
+       -->
+
+       
+
+    <div class="minispace"></div>
+
+    <button id="submitBtn" class="bigbutton widen golive ripple" (click)="logForm()"><span class="lower">Go Live</span></button>
+  </span>
+      <div class="minispace"></div>
+</ion-content>

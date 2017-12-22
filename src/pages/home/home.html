@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-navbar color='navbar'>
+    <ion-buttons left>
+      <button ion-button round (click)="presentInfo()">
+      <ion-icon class="mediumtext" name="md-cog"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-buttons right>
+      <button ion-button round (click)="goToMake()">
+      <ion-icon class="mediumtext" name="md-add"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title item-center><img class="minilogo" src="assets/img/minilogos/minilogo_moves.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="true" class="homebg">
+  <div id="fadeOverlay" class="purple-fade"></div>
+  <div id="ANIM_ratingstrip" class="ratingstrip"></div>
+  <ion-refresher pullMax="300" (ionRefresh)="refreshMoves($event)">
+      <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="" refreshingSpinner="circles"  refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div id="all">
+    <div class="marquee"></div>
+    <div class="centertext">
+      <h4 id="day" class="mediumtext date-time">{{ this.system.currentday }}</h4>
+      <h4 id="date" class="date-time">{{ this.system.currentdate }}</h4>
+    </div>
+    <!-- <div id="yaleLoadingBar">
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        viewBox="0 0 568.5 73.5" enable-background="new 0 0 568.5 73.5" xml:space="preserve">
+        <line class="path" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" x1="0" y1="36.2" x2="598.5" y2="36.2"
+        />
+        <g>
+          <path class="path" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M304.3,18c-3.5,0.2-5.1,1.3-6.9,4.3l-10.2,16.9v12
+    c1.3,2.9,4.1,3.2,7,3.3v1.4h-19.7v-1.4c2.8-0.1,6.2-0.6,7.2-2.5V39.6L271,22.2c-1.8-2.9-3.5-4-6.9-4.2v-1.4h17V18
+    c-3.3,0.2-4.3,0.9-5.2,1.6l9.8,16.5l9.6-16.4c-1-0.7-1.9-1.5-5.2-1.7v-1.4h14.1V18z" />
+        </g>
+      </svg>
+    </div> -->
+    <!-- SVG DESIGN END -->
+    <div id="sortBy">
+    <div style="overflow: hidden" *ngIf="mp.movesArr != null && !searching">
+
+    <ion-grid>
+    <div *ngIf="mp.movesList.open.length > 0">
+      <tit title="OPEN" subtitle="These moves are currently listed as open to everybody."></tit>
+      <ion-list>
+        <div id="moves">
+          <div *ngFor="let move of mp.movesList.open">
+            <move-item [move]="move"></move-item>
+          </div>
+          </div>
+      </ion-list>
+      </div>
+      <div *ngIf="mp.movesList.private.length > 0">
+      <tit title="PRIVATE" subtitle="These moves are currently listed as private."></tit>
+      <ion-list>
+        <div id="moves">
+          <div *ngFor="let move of mp.movesList.private">
+            <move-item [move]="move"></move-item>
+          </div>
+          </div>
+      </ion-list>
+      </div>
+
+      <div *ngIf="mp.movesList.hidden.length > 0">
+      <tit title="SECRET" subtitle="These moves can only be seen if you were invited."></tit>
+      <ion-list>
+        <div id="moves">
+          <div *ngFor="let move of mp.movesList.hidden">
+            <move-item [move]="move"></move-item>
+          </div>
+          </div>
+      </ion-list>
+      </div>
+    </ion-grid>
+
+      </div>
+      </div>
+
+
+      <div *ngIf="mp.movesArr.length == 0 || (mp.movesList.open.length == 0 && mp.movesList.private.length == 0 && movesList.hidden.length == 0)" class="nomoves centertext">
+        <!--<p class="circle1"></p>
+      <p class="circle1 slower"></p>
+      <p class="circle1 slower2"></p>
+      <p class="circle1 slower3"></p>
+      <p class="circle1 slower4"></p>
+      <p class="circle1 slower5"></p>-->
+        <!-- <div class="load-dot"></div>
+        <div class="load-dot"></div>
+        <div class="load-dot"></div> -->
+        <div style="font-family: 'Avenir'" *ngIf="!searching">No moves right now. Why not <b (click)="goToMake()">add your own?</b></div>
+        <!-- <img tappable *ngIf="!searching" (click)="goToMake()" class="ripple" style="width: 80%;" src="assets/img/no_moves_btn.png"/> -->
+      </div>
+      <div *ngIf="mp.movenum > 0" class='space'>
+        <div class="space"></div>
+        <div class="space"></div>
+      </div>
+      <div *ngIf="searching" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    </div>
+</ion-content>

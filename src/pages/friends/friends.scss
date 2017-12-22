@@ -1,0 +1,53 @@
+page-friends {
+
+    .addBtn {
+        display: block;
+        margin-top: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 80px;
+        width: 80px;
+        line-height: 60px;
+        opacity: 1;
+
+        border-radius: 360px; /* or 50% */
+
+        border-color: white;
+        border-style: solid;
+        border-width: 0px;
+        color: white;
+        text-align: center;
+        font-size: 3em;
+        transition: all ease 0.2s;
+        transform: scale(1);
+        -webkit-transform: scale(1);
+    }
+
+    .addBtn:active {
+        transform: scale(0.8);
+        -webkit-transform: scale(0.8);
+    }
+
+
+    .addBtn-text {
+        display: float;
+        position: relative;
+        opacity: 1;
+        top: 6px;
+        transition: all ease 0.4s;
+
+    }
+
+    .addBtn-text:active {
+        top: 0px;
+    }
+
+    .specialnumber {
+         height: 120px;
+        width: 120px;
+        border-radius: 50%;   
+        background-color: #ff0000;
+        padding: 5px;
+    }
+
+}

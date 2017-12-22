@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <script data-ionic="inject">
+    (function(w){var i=w.Ionic=w.Ionic||{};i.version='^3.2.1';i.angular='4.0.0';i.staticDir='build/';})(window);
+  </script>
+  <!--<script src="assets/js/pace.min.js"></script>
+  <link href="assets/css/pace-theme1.css" rel="stylesheet" />-->
+  <!--<script>
+  paceOptions = {
+    ajax: true,
+    document: true,
+    eventLag: false
+  };
+</script>-->
+  <meta charset="UTF-8">
+  <title>Moves App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdiinICDP4TQWRNrTBKgijj2Iww_H_XQs&libraries=places"></script>
+
+  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#886FE8">
+
+  <!-- cordova.js required for cordova apps -->
+  <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyYzzVPqgE0urtu5_GIZSL55LuLiRLdLk"></script>-->
+  <script src="cordova.js"></script>
+  <script src="assets/js/jquery-2.2.4.min.js"></script>
+  <script src="assets/js/mapcomponent.js"></script>
+  <script src="assets/js/progressbar.js"></script>
+  <script src="assets/js/jquery.editable.min.js"></script>
+  <script src="assets/js/anime.min.js"></script>
+  <script src="assets/js/velocity.min.js"></script>
+  <script src="assets/js/velocity.ui.min.js"></script>
+  <script src="assets/js/jquery.marquee.min.js"></script>
+  <script src="assets/js/toastr.min.js"></script>
+  <script src="assets/js/es6-promise.auto.min.js"></script>
+  <script src="assets/js/sweetalert2.min.js"></script>
+
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("user_YIRPAcDCfcv1FXy8VIWX5");
+   })();
+</script>
+
+<link rel="stylesheet" href="assets/css/sweetalert2.css">
+<link rel="stylesheet" href="assets/css/toastr.css">
+
+<link href="https://fonts.googleapis.com/css?family=Oxygen:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+
+<link href="lib/ionic/css/ionic.css" rel="stylesheet">
+<link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+  <!-- un-comment this code to enable service worker
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('service worker installed'))
+        .catch(err => console.log('Error', err));
+    }
+  </script>-->
+<link rel="stylesheet" type="text/css" href="assets/css/segment.css" />
+  <link href="build/main.css" rel="stylesheet">
+  <link href="assets/css/animate.css" rel="stylesheet">
+  <link href="assets/css/cleaning2.css" rel="stylesheet">
+  <link href="assets/css/mapcomponent.css" rel="stylesheet">
+
+  <!-- FONTS -->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+<script type="text/javascript" src="assets/js/segment.js"></script>
+
+<!--  Transform all select elements with the class of `segment-select` -->
+
+<script type="text/javascript">
+	jQuery(function ($){
+	     $(".segment-select").Segment();
+	});
+</script>
+</head>
+
+<body>
+
+  <!-- Ionic's root component and where the app will load -->
+  <ion-app></ion-app>
+
+  <!-- The polyfills js is generated during the build process -->
+  <script src="build/polyfills.js"></script>
+
+  <!-- The bundle js is generated during the build process -->
+  <script src="build/main.js"></script>
+
+  <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
+  </script>
+</body>
+
+</html>

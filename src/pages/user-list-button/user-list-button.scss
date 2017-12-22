@@ -1,0 +1,42 @@
+page-user-list-button {
+    .title-text {
+        font-size: 45px;
+        font-family: 'TruSemiFont';
+        text-align: center;
+        padding: 30px;
+    }
+
+    .subtitle-text {
+        font-size: 13px;
+        text-align: center;
+        margin-top: -30px;
+        font-family: 'TruLightFont';
+    }
+
+    .no-pad {
+        margin-bottom: -20px !important;
+    }
+
+    .closeBtn {
+        margin: auto !important;
+        border-radius: 30px;
+        font-size: 28px;
+        font-family: 'TruLightFont';
+        width: 100%;
+        color: white;
+        background-color: #886FE8;
+    }
+
+    .spinner-container {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    ion-searchbar {
+        font-family: 'Lato';
+        transition: all ease 0.4s; 
+        height: 50px; 
+    }
+
+}

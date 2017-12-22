@@ -1,0 +1,75 @@
+<!--
+  Generated template for the Profile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+  <ion-navbar color='navbar'>
+    <ion-title>
+      You
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div tappable (click)="goToYou()" class="prof-button"><div class="btn-title">{{ui.you.name}}</div><div class="btn-subtitle">{{ui.you.desc}}</div></div>
+  <div tappable (click)="goToMake()" class="prof-button"><div class="btn-title">Make a Move</div><div class="btn-subtitle">Post an event, party, concert, free food, etc.!</div></div>
+  <div>
+    <span *ngIf="np.badgeCount > 0" class="red-badge">{{np.badgeCount}}</span>
+    <div tappable (click)="goToFriends()" class="prof-button">
+      <div class="btn-title">{{ui.friends.name}}</div>
+      <div class="btn-subtitle">{{ui.friends.desc}}</div>
+    </div>
+  </div>
+
+    <!-- <ion-item text-wrap tappable (click)="goToMake()">
+        <ion-label class="option-name">Make a Move</ion-label>
+        <ion-label class="option-desc">Post an event, party, concert, free food, etc.!</ion-label>
+      </ion-item>		 
+    <ion-item text-wrap tappable (click)="goToYou()">
+        <ion-label class="option-name">{{ui.you.name}}</ion-label>
+        <ion-label class="option-desc">{{ui.you.desc}}</ion-label>
+      </ion-item>		 
+       <ion-item text-wrap tappable (click)='goToFriends()'>
+         <ion-label class="option-name"><span *ngIf="np.badgeCount > 0" class="red-badge">{{np.badgeCount}}</span>{{ui.friends.name}}</ion-label>
+         <ion-label class="option-desc">{{ui.friends.desc}}</ion-label>
+       </ion-item>		 
+         <ion-item text-wrap tappable (click)='logOut()'>
+         <ion-label class="option-name">{{ui.logout.name}}</ion-label>
+         <ion-label class="option-desc">{{ui.logout.desc}}</ion-label>
+       </ion-item>	  -->
+<!-- 
+    <div *ngIf="loading" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+
+  <div *ngIf="!loading" class="centertext">
+    <div *ngIf="user == null">
+      <p>Couldn't get user information...</p>
+    </div>
+    <div *ngIf="user != null">
+      <ion-item no-lines id="info">
+        <div>
+          <img id="profilePic" class="profile-pic prof-pic img" [src]="mUser.getPhoto(mUser.getFB().id).prof" />
+        </div>
+      </ion-item>
+      <h2 class="name" id="info">{{mUser.getFB().first_name}}</h2>
+    </div>
+  </div>
+  <br>
+  <div id="info">
+    <ion-list *ngIf="!loading">
+      <large-button tappable id="youBtn"  [title]="ui.you.name" [desc]="ui.you.desc" icon="ios-contact" (click)="goToYou()"></large-button>
+      <large-button tappable id="friendsBtn"  [title]="ui.friends.name" [desc]="ui.friends.desc" icon="md-people" (click)="goToFriends()"></large-button>
+      <large-button tappable id="squadsBtn"  [title]="ui.squads.name" [desc]="ui.squads.desc" icon="ios-people" [disabled]="true"></large-button>
+      <large-button tappable id="logoutBtn"  [title]="ui.logout.name" [desc]="ui.logout.desc" icon="md-exit" (click)="logOut()"></large-button>
+      <large-button tappable id="quitBtn" [color]="ui.quit.color" [title]="ui.quit.name" [desc]="ui.quit.desc" icon="md-contract" (tap)="quit()"></large-button> -->
+    <!-- </ion-list> -->
+  <!-- </div> -->
+  <div class="minispace"></div>
+  <p (click)="goToFriends()" *ngIf="!loading" id="info" class="centertext footer-info">You have {{mUser.getConnectionsCount()}} Facebook friend(s) using Moves.</p>
+  <div class="minispace"></div>
+</ion-content>

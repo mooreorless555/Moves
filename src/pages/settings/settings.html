@@ -1,0 +1,77 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navbar">
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list-header>
+    General
+  </ion-list-header>
+
+   <ion-item tappable (click)="about()">
+     <ion-label>About</ion-label>
+   </ion-item>		 
+    <!-- <ion-item>
+      <ion-label>Swear/Curse Filter (for kids)</ion-label>
+      <ion-toggle color="primary" [(ngModel)]="prefs.userPreferences.swearFilter" name="swearFilter"></ion-toggle>
+    </ion-item>		  -->
+      <ion-item tappable (click)='privacyPolicy()'>
+      <ion-label>Privacy Policy</ion-label>
+    </ion-item>	 		 
+    <ion-item tappable (click)='logOut()'>
+      <ion-label>Log Out</ion-label>
+     </ion-item>
+
+<div *ngIf="isAdmin()">
+    <ion-list-header>
+    Admin Options
+  </ion-list-header>
+  <!-- <info *ngIf="isAdmin()" text="The following options are only visible to you if you have been granted admin access, which you have. Congratulations."></info> -->
+  <ion-item style="color: #777" *ngIf="isAdmin()">Total unique daily logins: {{uniqueDailyLogins}}</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='sendWorldPush()'>
+  <ion-label>Send World Push</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='grantAlias()'>
+  <ion-label>Grant Alias</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='grantBadge()'>
+  <ion-label>Grant Badge</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='getUserInfo()'>
+  <ion-label>Get User Info</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='showLoader()'>
+  <ion-label>Show Loader</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='sendTagNotification()'>
+  <ion-label>Send Tag Notification</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='giveTag()'>
+  <ion-label>Give Myself a Tag</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='giveOtherUserTag()'>
+  <ion-label>Give User a Tag</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='showTags()'>
+  <ion-label>Show Me My Tags</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='removeAllTags()'>
+  <ion-label>Remove All My Tags</ion-label>
+</ion-item>
+<ion-item *ngIf="isAdmin()" tappable (click)='getPushData()'>
+  <ion-label>Get Push Data</ion-label>
+</ion-item>
+</div>
+<div class="minispace"></div>
+</ion-content>

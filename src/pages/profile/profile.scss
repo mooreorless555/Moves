@@ -1,0 +1,104 @@
+page-profile {
+
+.buttontext {
+    font-family: 'Oxygen', sans-serif !important;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.img {
+    opacity: 1;
+}
+
+
+.captiontext {
+    font-size: 16px;
+}
+
+.name {
+    font-family: 'Oxygen';
+    font-weight: 600;
+    opacity: 1;
+}
+
+.option-name {
+    font-family: 'Lato';
+    font-size: 25px;
+}
+.option-desc {
+    font-family: 'Lato';
+    font-size: 18px;
+}
+
+
+.prof-button:hover {
+    color: #ffffff !important;
+}
+.prof-button:active {
+    color: #ffffff !important;
+}
+
+.slidebutton {
+    font-size: 30px;
+    font-family: MoveHeader !important;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.prof-pic {
+    width: 50%;
+    height: 50%;
+}
+
+.red-badge {
+    color: #fff;
+    font-size: 30px;
+    background-color: red;
+    border-radius: 30%;
+    font-family: 'MoveHeader';
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    top: 20px;
+    z-index: 9;
+}
+
+.footer-info {
+    font-size: 15px;
+    font-family: 'Lato' !important;
+}
+
+.prof-button {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 15px;
+    background: rgba(0,0,0,0); /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.02)); /* For Safari 5.1 to 6.0 */
+    background: linear-gradient(rgba(0,0,0,0),rgba(255,255,255,0.02)); /* Standard syntax */
+    width: 100%;
+    margin-bottom: 10px;
+    transform: scale(1.0);
+    transition: all ease 0.2s;
+}
+
+.prof-button:active {
+    transform: scale(0.8);
+}
+
+.btn-title {
+    font-family: 'AvenirMedium';
+    text-transform: uppercase;
+    font-size: 30px;
+    display: inline-block;
+    width: 100%;
+}
+
+.btn-subtitle {
+    font-family: 'Avenir';
+    display: inline-block;
+}
+
+}

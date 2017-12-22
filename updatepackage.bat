@@ -1,0 +1,15 @@
+call npm install --save @angular/common@latest
+call npm install --save @angular/compiler@latest
+call npm install --save @angular/compiler-cli@latest
+call npm install --save @angular/core@latest
+call npm install --save @angular/forms@latest
+call npm install --save @angular/http@latest
+call npm install --save @angular/platform-browser@latest
+call npm install --save @angular/platform-browser-dynamic@latest
+call npm install --save @angular/platform-server@latest
+call npm install --save ionic/app-scripts@latest
+call npm install --save ionic@latest
+call npm install --save ionic-angular@latest
+call npm install --save ionic-native@latest
+call npm install --save typescript@latest
+call npm install --save zone.js@latest

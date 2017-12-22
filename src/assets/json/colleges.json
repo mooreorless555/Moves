@@ -1,0 +1,13 @@
+[{
+    "key": "yale",
+    "name": "Yale University",
+    "nickname": "Yale",
+    "emailSuffix": "@yale.edu",
+    "color": "‎#886fe8"
+  }, {
+    "key": "harvard",
+    "name": "Harvard University",
+    "nickname": "Harvard",
+    "emailSuffix": "@college.harvard.edu",
+    "color": "#DC143C"
+  }]

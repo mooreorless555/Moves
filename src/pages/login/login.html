@@ -1,0 +1,32 @@
+<ion-content no-bounce padding text-center class="movesbg">
+  <div id="fadeOut" class="purple-fade"></div>
+  <div class="space"></div>
+  <div class="centerme" id='loginLogo'>
+    <div>
+      <img class="logo" src="assets/img/new/movesU_logo.png" />
+    </div>
+  </div>
+  <!-- <div id='pulse'><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    viewBox="0 0 568.5 73.5" enable-background="new 0 0 568.5 73.5" xml:space="preserve">
+    <line class="path" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" x1="0" y1="36.2" x2="598.5" y2="36.2"
+    />
+    <g>
+      <path class="path" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-miterlimit="10" d="M304.3,18c-3.5,0.2-5.1,1.3-6.9,4.3l-10.2,16.9v12
+    c1.3,2.9,4.1,3.2,7,3.3v1.4h-19.7v-1.4c2.8-0.1,6.2-0.6,7.2-2.5V39.6L271,22.2c-1.8-2.9-3.5-4-6.9-4.2v-1.4h17V18
+    c-3.3,0.2-4.3,0.9-5.2,1.6l9.8,16.5l9.6-16.4c-1-0.7-1.9-1.5-5.2-1.7v-1.4h14.1V18z" />
+    </g>
+    </svg></div> -->
+    <div class="minispace"></div>
+    <div tappable id='loginStuff'>
+      <button id="loginBtn" class="ripple bigbutton addicon" (click)="beginLogin()">
+        <ion-icon name="logo-facebook" class="bigicon"></ion-icon>
+        <span class="higher">Login with Facebook</span>
+      </button>
+    </div>
+    <br>
+     <button *ngIf="isWeb()" id="loginBtn" tappable (click)='toggleDebugFlag(); beginLogin();' class="apple-signin-btn ripple">App Reviewers, Sign In As 'Mac Tosh'!</button> 
+    <br>
+    <br>
+    <p class="disclaimer">{{ info }}</p>
+    <p class="disclaimer avenir-medium">MovesU 2017</p>
+</ion-content>

@@ -1,0 +1,8 @@
+{
+  "name": "Moves",
+  "app_id": "059885c2",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

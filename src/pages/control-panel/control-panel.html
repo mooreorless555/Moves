@@ -1,0 +1,39 @@
+<!--
+  Generated template for the ControlPanelPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navbar">
+    <ion-title>Control Panel</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <tit title="CONTROL PANEL" subtitle="Edit event info, invite or uninvite friends, make announcements, manage hosts and other important actions here!"></tit>
+     <div class="info-box">
+       <div class="title">Owner</div>
+       <div class="text">{{this.owner}}</div>
+       <div class="title">Hosts</div>
+       <div class="text">{{this.hosts}}</div>
+    </div>
+     <large-button tappable (click)='hostNotifyOptions()' title="Notify"></large-button>
+     <large-button tappable (click)='editStats()' title="Edit"></large-button>
+     <large-button tappable (click)='inviteFriends()' title="Invites"></large-button>
+     <large-button tappable (click)='changeHosts()' title="Hosts"></large-button>
+
+    <ion-item tappable (click)='endMove()'>
+      <ion-label>End Move</ion-label>
+     </ion-item>	 
+
+     <div style="margin-bottom: 10px" class="invisible">Your move.</div>
+
+<div id="modal">
+</div>
+
+</ion-content>

@@ -1,0 +1,281 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/v2/theming/
+@import "ionic.globals";
+
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/ #886aea
+
+$text-color:        #fff;
+$background-color:  #222;
+
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map. 6E71E8 886FE8
+
+$colors: (
+  // primary:    #9932CC, #7c48ff
+  primary:    #886FE8,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  red:      #ff0000,
+  light:      #f4f4f4,
+  dark:       #222,
+  // navbar:	  #886FE8,
+  // tabbar:	  #886aea,
+  navbar:	  #886fe8,
+  tabbar:	  #886fe8,
+  navbar2:#886FE8,
+  tabbar2:#886FE8,
+  off:	  #888888,
+  good: #64dd17,
+  facebook:   #3B5998,
+  fun: #27e833,
+  meh: #FBD200,
+  dead: #f9152f,
+  bulletin: #e86f6f,
+  whitesmoke: whitesmoke
+);
+
+$refresher-icon-color: '#fff';
+$refresher-text-color: '#fff';
+
+$alert-ios-background: #886fe8;
+$alert-ios-button-text-color: #fff;
+$alert-ios-sub-title-text-color: #fff;
+$alert-ios-button-border-width: 0px;
+
+$text-input-highlight-color-valid: #886fe8;
+$toggle-ios-handle-background-color: #ffffff;
+
+$loading-ios-background: #886fe8;
+$loading-ios-border-radius: 10px;
+// $loading-ios-background: rgba(255, 255, 255, 0.8) !default;
+$loading-ios-text-color: #fff !default;
+
+$searchbar-ios-background-color:   rgba(255, 255, 255, 0) !default;
+$searchbar-ios-input-placeholder-color:   rgba(255, 255, 255, 1) !default;
+
+/// @prop - Padding top/bottom of the searchbar
+$searchbar-ios-padding-vertical:        0 !default;
+/// @prop - Color of the searchbar input search icon
+$searchbar-ios-input-search-icon-color:  #fff;
+/// @prop - Color of the searchbar input clear icon
+$searchbar-ios-input-clear-icon-color:   #fff;
+
+$searchbar-ios-padding-horizontal:        8px !default;
+$searchbar-ios-input-text-color:          #f8f8f8 !default;
+$searchbar-ios-input-background-color:    rgba(0, 0, 0, 0.02) !default;
+
+$spinner-ios-crescent-color:              #fff;
+
+@font-face {
+font-family: AppFont;
+src: url("../assets/fonts/DINPro.otf");
+}
+
+@font-face {
+font-family: InfoFont;
+src: url("../assets/fonts/listheader2.woff2");
+}
+
+@font-face {
+font-family: MoveDesc;
+src: url("../assets/fonts/DINPro-Light.otf");
+}
+
+@font-face {
+font-family: LightFont;
+src: url("../assets/fonts/BebasNeue-Bold.ttf");
+}
+
+@font-face {
+font-family: MoveHeader;
+src: url("../assets/fonts/DINPro-BlackItalic.otf");
+// src: url("../assets/fonts/DIN-Black.otf");
+}
+
+@font-face {
+font-family: ButtonFont;
+src: url("../assets/fonts/Lobster-Regular.ttf");
+}
+
+@font-face {
+  font-family: FBFont;
+  src: url("../assets/fonts/gibson-light.otf");
+}
+
+@font-face {
+  font-family: TruLightFont;
+  src: url("../assets/fonts/gibson-light.otf");
+}
+
+@font-face {
+  font-family: TruSemiFont;
+  src: url("../assets/fonts/gibson-semibold.otf");
+}
+
+@font-face {
+  font-family: TruSemiFont2;
+  src: url("../assets/fonts/SourceSansPro-Semibold.ttf");
+}
+
+@font-face {
+  font-family: NotoSans;
+  src: url("../assets/fonts/NotoSansThaiUI-Bold.ttf");
+}
+
+@font-face {
+  font-family: TruRoboto;
+  src: url("../assets/fonts/RobotoCondensed-Regular.ttf");
+}
+
+@font-face {
+  font-family: Oxygen;
+  @import url('https://fonts.googleapis.com/css?family=Oxygen:400,700');
+}
+
+@font-face {
+  font-family: TruLato;
+  src: url("../assets/fonts/Lato-Bold.ttf");
+}
+
+@font-face {
+  font-family: Avenir;
+  src: url("../assets/fonts/Avenir LT 45 Book.ttf");
+}
+
+@font-face {
+  font-family: AvenirMedium;
+  src: url("../assets/fonts/Avenir LT 65 Medium.ttf");
+}
+
+@font-face {
+  font-family: AvenirBlack;
+  src: url("../assets/fonts/Avenir-Black.ttf");
+}
+body, span, button, h2, h3, h5, h6 {
+font-family: 'Avenir';
+// -webkit-appearance: none;
+// -moz-appearance: none;
+// appearance: none;
+}
+
+html {
+  font-family: 'Avenir';
+}
+
+i {
+  font-family: 'TruRoboto';
+}
+
+ion-segment {
+  font-family: 'Avenir';
+}
+
+.swiper-pagination-bullet {
+  transition: all cubic-bezier(0.190, 1.000, 0.220, 1.000) 0.2s !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #886fe8 !important;
+  opacity: 1;
+}
+
+p {
+font-family: 'TruLightFont' !important;
+}
+
+ion-title, {
+  font-family: 'AvenirMedium';
+}
+
+ion-list-header, {
+  font-family: 'InfoFont';
+  color: #ddd !important;
+}
+
+ion-label {
+  font-family: 'Avenir';
+}
+
+ion-input .floating {
+  font-family: 'Avenir';
+  font-size: 25px;
+}
+
+ion-input {
+  font-family: 'Avenir';
+  font-size: 20px;
+}
+
+ion-textarea {
+  font-family: 'Avenir';
+  font-size: 15px;
+  resize: vertical; 
+}
+
+h4, {
+	font-family: 'TruLightFont';
+}
+
+h1 {
+	font-family: 'MoveHeader' !important;
+}
+
+
+// App iOS Variables
+// --------------------------------------------------
+// iOS only Sass variables can go here
+
+// @import url('https://fonts.googleapis.com/css?family=Oxygen');
+// $font-family-base: 'Oxygen', sans-serif !default;
+
+
+// App Material Design Variables
+// --------------------------------------------------
+// Material Design only Sass variables can go here
+
+
+
+// App Windows Variables
+// --------------------------------------------------
+// Windows only Sass variables can go here
+
+
+
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+
+// ion-scroll[direction=x] {
+//   width: 100vw;
+// }
+// ion-scroll[direction=y] {
+//   height: 300vh;
+// }
+
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/v2/ionicons/
+
+$ionicons-font-path: "../assets/fonts";
+@import "ionicons";

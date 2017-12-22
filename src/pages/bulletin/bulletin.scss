@@ -1,0 +1,27 @@
+page-bulletin {
+
+    .date-time {
+        font-family: 'Avenir';
+    }
+
+    .spinner-container {
+        text-align: center;
+        margin: auto;
+    }
+
+    .bulletin-btn {
+        width: 50%;
+        text-align: center;
+        align-content: center;
+        margin: auto;
+        transition: 0.2s ease all;
+        transform: scale(1.0);
+    }
+
+    .bulletin-btn:active {
+        transform: scale(0.9);
+    }
+
+    
+
+}

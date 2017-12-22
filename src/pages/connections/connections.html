@@ -1,0 +1,38 @@
+<!--
+  Generated template for the ConnectionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='navbar'>
+    <ion-title>{{ui.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar [showCancelButton]="false" [animated]="true" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+  <ion-list class="invisible">
+    <ion-list-header class="lheader">
+      {{ui.info.title}} ({{connectionsList.length}})
+    </ion-list-header>
+
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <div *ngIf="loading" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner> 
+    </div>
+    <a *ngIf="!searching">
+    <ion-item id="userItem" no-lines *ngFor="let con of connectionsList; let last" [attr.ready]="last ? false : true" class="no-pad">
+      {{con.name}}
+      <button class="ripple" *ngIf='!(con.status.friends || con.status.requestSent || con.status.requestRecv)' id="check" (click)="sendFriendRequest(con)" ion-button outline item-right>Send Request</button>
+      <button class="ripple" *ngIf='con.status.friends' color="secondary" id="remove" ion-button outline item-right>Friends</button>
+      <button class="ripple" [id]="con.id+'_request-sent-btn'" *ngIf='con.status.requestSent' color="off" disabled="true" ion-button outline item-right>Request Sent</button>
+    </ion-item>
+    </a>
+  </ion-list>
+  <div class="space"></div>
+</ion-content>

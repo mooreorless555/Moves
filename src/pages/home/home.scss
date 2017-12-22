@@ -1,0 +1,152 @@
+page-home {
+
+.marquee {
+  width: 300px; /* the plugin works for responsive layouts so width is not necessary */
+  overflow: hidden;
+  border:1px solid #ccc;
+}
+
+.ratingstrip {
+	background-image: url("../assets/img/ratingstrip.png");
+    background-repeat:no-repeat;
+	background-size: cover;
+	position: absolute;
+	z-index: -1;
+	width: 10%;
+	height: 100%;
+	padding: 10px;
+	bottom: 620px;
+	transform:rotate(90deg);
+	left: 60px;
+}
+
+.load-dot {
+  background-color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  opacity: 1;
+  display: inline-block;
+  transform: scale(0);
+  -webkit-transform: scale(0);
+}
+
+.text {
+	font-family: 'Lato';
+	text-align: center;
+}
+
+.center-down {
+	margin-top: 100px;
+}
+
+
+.lift {
+	position: relative;
+	bottom: 3px;
+	left: 8px;
+	font-size: 18px;
+}
+
+.date-time {
+	font-family: 'Avenir';
+}
+
+.homebg {
+	// background-image: url("../assets/img/MOVES_homebg.png");
+	background-color: #222;
+	background-size: cover;
+}
+	.animIn.ng-enter {
+	  -webkit-animation: fadeInLeft 1s;
+      animation: fadeInLeft 1s;
+	}
+
+.moveslist {
+	display: block;
+	border-radius: 30px !important;
+	margin-bottom: 20px !important;
+}
+
+.fun-border {
+    border: 0px solid #27e833 !important;
+    color: #27e833 !important;
+}
+
+.meh-border {
+    border: 0px solid #FBD200 !important;
+    color: #FBD200 !important;
+}
+
+.dead-border {
+    border: 0px solid #f9152f !important;
+    color: #f9152f !important;
+}
+.ratingdot {
+	font-size: 0rem;
+	position: relative;
+	bottom: 5px;
+	padding-right: 3px;
+}
+
+.extra-info-text {
+	color: #886FE8;
+	// color: #dddddd;
+}
+
+.host-text {
+	color: #6250A9
+}
+
+	.circle1 {
+	    display:inline-block;
+	    height: 10px;
+	    width: 10px;
+	    position: relative;
+	    border-radius: 50%;
+	    background-color: #ffffff;
+	    animation-name: bouncydots;
+	    animation-duration: 1.0s;
+	    animation-iteration-count: infinite;
+	    animation-timing-function: ease-in-out;
+	}
+
+	.circle1.slower {
+	      animation-duration: 1.5s;
+	}
+
+	.circle1.slower2 {
+	      animation-duration: 1.8s;
+	}
+	.circle1.slower3 {
+	      animation-duration: 2.0s;
+	}
+	.circle1.slower4 {
+	      animation-duration: 2.2s;
+	}
+	.circle1.slower5 {
+	      animation-duration: 2.4s;
+	}
+
+	.marquee {
+		outline: none;
+		border: none;
+		margin-bottom: 30px;
+	}
+
+	.spinner-container {
+        text-align: center;
+        margin: auto;
+    }
+
+
+	@keyframes bouncydots {
+	  0%   {border-radius: 50%; top: 100px; left: 0px; height: 10px}
+	  25% {height: 15px}
+	  50%  {border-radius: 45%; top: 0px; height: 10px}
+	  75% {height: 15px}
+	  100% {border-radius: 50%; top: 100px; left: 0px; height: 10px}
+	}
+
+}
+

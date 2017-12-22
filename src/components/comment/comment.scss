@@ -1,0 +1,37 @@
+comment {
+
+    .small-pic {
+        display: inline-block !important;
+        position: relative;
+        top: 15px;
+        // height: 30% !important;
+        // width: 30% !important;
+    }
+
+    .image-size {
+        height: 120% !important;
+        width: 120% !important;
+        margin-bottom: -5px !important;   
+    }
+
+    .ntext {
+        color: white;
+        font-family: 'TruRoboto', sans-serif !important;
+        display: inline;
+        letter-spacing: 0px;
+        font-size: 15px !important;
+    }
+
+    .ttext {
+        color: #444;
+    }
+
+    .captiontext {
+        position: relative;
+        bottom: 20px;
+        // bottom: 25px;
+        margin-left: 63px;
+        font-size: 16px;
+        word-wrap: break-word;
+    }
+}

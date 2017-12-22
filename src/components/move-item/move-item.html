@@ -1,0 +1,29 @@
+<!-- Generated template for the MoveItemComponent component -->
+
+  <div [@slideInOut] tappable id='id_{{move.key}}' class='move-box'>
+    <div tappable class="move-info-box" (click)="checkStats(move)">
+      <div class="move-text hosts">{{hosts}}</div>
+      <div class="move-text title">{{move.info.name}}</div>
+      <div class="move-text time">{{startTimeMsg}}</div>
+      <div *ngIf="move.info.isPending" class="move-text countdown-msg">goes live {{countDownMsg}}</div>
+      <div *ngIf="!move.info.isPending" class="move-text countdown-msg">went live {{countDownMsg}}</div>
+      <div class="divider"></div>
+      <div class="move-text desc">{{move.info.extraInfo}}</div>
+      <div class="badge" *ngIf="move.info.owner.badgeId != 999"><img [src]="badgeSrc"/></div>
+    </div>
+    <div class="move-stats-box" (click)="checkStats(move)">
+      <div id="ctn_{{move.key}}"></div>
+    </div>
+    <div class="move-options-box">
+      <div class="move-text follow-text invisible">
+        <ion-icon name="add"></ion-icon>
+        <a class="move-text follow-number">{{numFollowers}}</a>
+        {{numFollowers == 1 ? "follow" : "follows"}}
+      </div>
+      <!-- <div class="move-text caption-text invisible">{{followers}}</div> -->
+      <div class="divider"></div>
+      <div tappable (click)="follow(false)" class="button following" *ngIf="isFollowing"><i class="fa fa-bell"></i> Following</div>
+       <div tappable (click)="follow(true)" class="button not-following" *ngIf="!isFollowing"><i class="icon-li icon-bell"></i> Follow</div> 
+      <div tappable (click)="checkStats(move)" class="button details">View <i class="pull-right icon-chevron-right"></i></div>
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+<!--
+  Generated template for the ListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="navbar">
+    <ion-title>List</ion-title>
+  </ion-navbar>
+
+  
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-searchbar class="big-search" placeholder="Search the entire list" [showCancelButton]="false" [animated]="true" [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+  <div *ngIf="searching" class="spinner-container">
+      <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <div *ngIf="!searching && guests_filtered.length > 0">
+    <span class="info-title">{{guests_filtered.length}}</span><span class="info-subtitle"> on the list.</span>
+    <div *ngFor="let guest of guests_filtered">
+      <div class="user-name">{{guest.name}}</div>
+    </div>
+    </div>
+    <div class="error-message" *ngIf="!searching && guests_filtered.length <= 0">
+      No results.
+    </div>
+  
+</ion-content>

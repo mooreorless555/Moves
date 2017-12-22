@@ -1,0 +1,115 @@
+page-user {
+
+    .user-title {
+        display: block;
+        position: relative;
+        font-size: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        right: 200px;
+        z-index: 10;
+    }
+
+    .user-subtitle {
+        display: block;
+        font-size: 20px;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        bottom: 10px;
+        left: 5px;
+        color: #dddddd;
+        z-index: 10;
+    }
+
+    .user-caption {
+        font-size: 12px;
+        font-weight: 300;
+        font-family: 'Montserrat', sans-serif;
+        position: relative;
+        bottom: 15px;
+        left: 5px;
+        color: #dddddd;
+        z-index: 10;
+    }
+
+    .profile-background {
+        position: absolute;
+        transform: scale(2);
+        // background: url('http://www.planwallpaper.com/static/images/general-night-golden-gate-bridge-hd-wallpapers-golden-gate-bridge-wallpaper.jpg');
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+        top: 17;
+        left: 0;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .profile-tint {
+        position: absolute;
+        width: 0%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .profile-module {
+        z-index: 3;
+        padding: 10px;
+        opacity: 0;
+        width: 60%;
+    }
+
+    .profile-solid {
+        background-color: #222;
+        width: 300%;
+        height: 0%;
+        position: absolute;
+        top: 120px;
+        left: 0px;
+        z-index: 1;
+    }
+
+    .profile-badge {
+        position: absolute;
+        top: 100px;
+        width: 100px;
+        height: 100px;
+        left: 0%;
+        opacity: 0;
+        transform: scale(1);
+        // -webkit-transform-origin: 50% 50%;
+        // -ms-transform-origin: 50% 50%;
+        // transform-origin: 50% 50%;
+        // -webkit-transform-style: preserve-3d;
+        // -ms-transform-style: preserve-3d;
+        // transform-style: preserve-3d;
+        z-index: 2;
+    }
+
+    .badge-image {
+        position: absolute;
+        top: 70px;
+    }
+
+    .profile-badge:active {
+        transform: scale(0.8);
+    }
+
+    .out-of-sight {
+        opacity: 0;
+        z-index: 10;
+    }
+
+
+    #user-bio input:focus {
+        outline: none;
+        border: transparent;
+    }
+
+
+
+}

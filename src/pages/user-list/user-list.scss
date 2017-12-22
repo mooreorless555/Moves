@@ -1,0 +1,27 @@
+page-user-list {
+
+    .title-text {
+        font-size: 40px;
+        font-family: 'TruSemiFont';
+        text-align: center;
+        padding: 10px;
+    }
+
+    .subtitle-text {
+        font-size: 13px;
+        text-align: center;
+        margin-top: -10px;
+        font-family: 'TruLightFont';
+    }
+
+    .closeBtn {
+        margin: auto !important;
+        border-radius: 30px;
+        font-size: 28px;
+        font-family: 'TruLightFont';
+        width: 100%;
+        color: white;
+        background-color: #886FE8;
+    }
+}
+

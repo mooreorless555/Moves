@@ -1,0 +1,44 @@
+<!--
+  Generated template for the BulletinPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color='navbar'>
+    <ion-buttons right>
+      <button ion-button round (click)="make()">
+      <ion-icon class="mediumtext" name="md-add"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title item-center><img class="minilogo" src="assets/img/minilogos/minilogo_otm.png"/>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher pullMax="300" (ionRefresh)="refreshPosts($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="" refreshingSpinner="circles"  refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+    <div class="marquee"></div>
+    <div style="margin-bottom: 25px"></div>
+    <div class="centertext">
+      <h4 id="day" class="mediumtext date-time">{{ this.system.currentday }}</h4>
+      <h4 id="date" class="date-time">{{ this.system.currentdate }}</h4>
+    </div>
+
+
+    <!-- POSTS BELOW -->
+    <div *ngIf="!hasPost()" tappable (click)="make()" class="bulletin-btn"><img src="assets/img/post_bulletin_btn.png" /></div>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+    <ion-list>
+    <div *ngIf="!searching">
+      <a *ngFor="let post of posts"><bulletin-post [post]='post'></bulletin-post></a></div>
+    </ion-list>
+
+
+</ion-content>

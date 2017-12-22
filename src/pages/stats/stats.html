@@ -1,0 +1,154 @@
+<ion-header>
+	<ion-navbar color='navbar'>
+		<ion-buttons end>
+			<button ion-button icon-only (click)="refreshStats()">
+        <ion-icon name="md-refresh"></ion-icon>
+      </button>
+		</ion-buttons>
+		<ion-title>Information</ion-title>
+	</ion-navbar>
+	<ion-toolbar *ngIf="isHost">
+		<ion-buttons center>
+		<div class="toolbar-button ripple" tappable (click)="goToControlPanel()">
+			<ion-icon name="create"></ion-icon>
+			Visit Control Panel
+		</div>
+		</ion-buttons>		
+		<!-- <ion-segment>
+			<ion-segment-button *ngIf="!move.info.isAnon" value="hot" (ionSelect)="addHosts()">
+				Edit Hosts
+			</ion-segment-button>
+			<ion-segment-button *ngIf="!move.info.isOpen" value="invite" (ionSelect)="editInvites()">
+				Invite Friends
+			</ion-segment-button>
+			<ion-segment-button value="delete" (ionSelect)="endMove()">
+				End Move
+			</ion-segment-button>
+		</ion-segment> -->
+	</ion-toolbar>
+</ion-header>
+<ion-content>
+<ion-spinner name="crescent" class="stats-loader" *ngIf="!doneLoading"></ion-spinner>
+<div id="pageBox" class="hide">
+	<div id="headerSection"></div>
+	<ion-grid>
+		<ion-row class="headerback" center>
+			<div class='centerthis'>
+				<div id="headerTextSection" class=" headerback centerthis ">
+					<div *ngIf="userIsHere" class="you-are-here">you are here</div>
+					<h1 class="title-text">{{moveName}}</h1>
+					<p  (click)="viewDesc()" item-description id="extraInfoTextSection" class='move-desc '>{{moveExtraInfo == "" ? "" : moveExtraInfo}}</p>
+					<div *ngIf="move.info.owner.badgeId != 999" class='move-badge'><img [src]="badgeSrc"/></div>
+				</div>
+			</div>
+		</ion-row>
+		<ion-row align-items-center justify-content-center class="centerme">
+				<div id="addressSection" class="address center-address ">
+					<h3 class="latotext">{{moveLocation}}</h3>
+					<p *ngIf="move.info.showAddress" item-description class>{{moveAddress}}</p>
+					<span class="host-text" *ngIf="!move.info.isAnon">Hosted by {{hosts}}</span>
+					<span *ngIf="move.info.isAnon"><i>This was reported to be happening by someone.</i></span>
+				</div>
+		</ion-row>
+		<div style="margin-bottom: 30px; -webkit-margin-after: 30px;"></div>
+		 <!-- <div style="margin-bottom: 200px;" *ngIf="isiOS()"></div>  -->
+
+		<div style="margin-bottom: 150px;" *ngIf="isiOS() && move.info.owner.badgeId != 999"></div>
+		
+		<ion-grid *ngIf="!move.info.isOpen" >
+			<ion-row>
+				<ion-col tappable width-50 class="capsule ripple" (click)="goToList()">
+					<span class="capsule-content">View List</span>
+					<!-- <span *ngIf="!userIsHere" class="capsule-header">Tap to check in manually.</span> -->
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		
+		<ion-grid *ngIf="moveIsLive">
+			<ion-row>
+				<ion-col tappable width-50 class="capsule ripple" (click)="checkIn()">
+					<span *ngIf="!userIsHere" class="capsule-content">Check In</span>
+					<span *ngIf="!userIsHere" class="capsule-header">Tap to check in manually.</span>
+					<span *ngIf="userIsHere" class="capsule-content">Checked In</span>
+					<span *ngIf="userIsHere" class="capsule-header"><ion-icon name="checkmark"></ion-icon></span>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<!-- <h3 style="margin-bottom: 20px" class='centertext latotext'>Comments ({{(comments | async)?.length || 0}})</h3>
+											<div *ngFor="let comment of comments | async">
+											<comment [commentInfo]="comment"></comment>
+											</div>
+											<form (ngSubmit)="submitComment()" novalidate>
+												<ion-row>
+													<ion-col col-10>
+														<ion-item>
+															<ion-input tappable autocomplete="true" autocorrect="on" id="commentbox" class="commentsection" type="text" [(ngModel)]="comment" name="comment" maxlength="100" placeholder="Type a message..."></ion-input>
+														</ion-item>
+													</ion-col>
+													<ion-col col-2>
+														<a tappable (click)="submitComment()"><ion-icon class="submit-comment-button" name="ios-paper-plane"></ion-icon></a>
+													</ion-col>
+												</ion-row>
+											</form> -->
+
+		<div id="statsSection" class="centertext somepadding ">
+		    <info *ngIf="isHost" text="These are real-time stats for your move. If you need to change anything, check out the Host Toolbar above. Press the pencil button in the upper-left corner of the screen to edit information about your move!"></info>
+			<div class='centertext robototext'>{{ dataStreamInfo }}</div>
+			<i><div class='centertext robototext'>tap each block for more info.</div></i>
+			<ion-row>
+				<ion-col width-50 tappable (click)="peopleDetails()" class="module ripple">
+					<h4>people</h4>
+					<div id="containerbig" class="containerbig" #containerbig></div>
+				</ion-col>
+				<ion-col width-50 tappable (click)='ratingsDetails();' class="module">
+					<h4>ratings</h4>
+					<div><span id="funbar" class="linebar" #funbar></span>
+						<span id="mehbar" class="linebar" #mehbar></span>
+						<span id="deadbar" class="linebar" #deadbar></span></div>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col width-50 tappable (click)="flowDetails()" class="module ripple">
+					<h4>flow</h4>
+					<div id="flow" class="containerbig somepadding"><img src="assets/img/no_arrow.png" /></div>
+				</ion-col>
+				<ion-col width-50 tappable (click)="connectionDetails()" class="module ripple">
+					<h4>connections</h4>
+					<h3>
+						<ion-item>
+							<ion-icon name="logo-facebook" item-left></ion-icon>{{connectionsAtMove.length}}
+						</ion-item>
+					</h3>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col id="friends" width-50 class="module ripple" (click)='goToUserList(move)'>
+					<h4>friends</h4>
+					<h3>
+						<ion-item>
+							<ion-icon name="people" item-left></ion-icon>{{ numFriends }}
+						</ion-item>
+					</h3>
+				</ion-col>
+				<ion-col width-50></ion-col>
+			</ion-row>
+		</div>
+	</ion-grid>
+
+
+	<div class="minispace"></div>
+	<div class="minispace"></div>
+	<div class="minispace"></div>
+	<div id="infoSection" class="centertext ">
+	</div>
+		 <div style="margin-bottom: 100px;"></div>
+	 <!-- <div *ngShow="isAdmin()"> -->
+		 <!-- <button (click)="addUser()">DEBUG: ADD USER</button>
+		<div class="minispace"></div>
+		<button (click)="removeUser()">DEBUG: REMOVE USER</button>  -->
+	<!-- </div> -->
+	<div id="bottomOfPage" class="space ">lol</div> 
+	<!-- </ion-slide>
+</ion-slides> -->
+	</div>
+</ion-content>

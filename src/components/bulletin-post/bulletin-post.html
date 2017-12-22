@@ -1,0 +1,25 @@
+<!-- Generated template for the BulletinPostComponent component -->
+<ion-item-sliding (ionDrag)="ondrag($event)" #item>
+  <ion-item text-wrap class="b-post" no-lines>
+      <!-- <ion-icon *ngIf="this.mUser.getFB().id == post.id" tappable (click)="bpage.editBulletin(post.key)"name="document" item-end></ion-icon>
+      <ion-icon *ngIf="this.mUser.getFB().id == post.id" tappable (click)="bpage.delete(post.key)" name="trash" item-end></ion-icon> -->
+      <ion-avatar item-start><img [src]="this.mUser.getPhoto(post.id).square"></ion-avatar>
+      <!-- <b>{{post.first_name}} {{countDownTime == "...this already happened..." ? "was" : "is"}}  </b><i>{{post.content}}</i> -->
+      <b>{{post.first_name}} </b>{{post.content}}
+      <br>
+      <b class="small-b-text">  {{countDownTime}} </b>     <span class="plus-one-badge">{{plusOneCount}}</span>
+
+      <div *ngFor="let user of poVal">
+        <img class="small-avatar" [src]="mUser.getPhoto(user.id).square">
+      </div>
+    </ion-item>
+    <ion-item-options *ngIf="this.mUser.getFB().id == post.id" side="right">
+        <button class="side-btn" ion-button (click)="bpage.editBulletin(post.key)">Edit</button>
+        <button class="side-btn" ion-button color="danger" (click)="bpage.delete(post.key)">Delete</button>
+      </ion-item-options>
+  
+      <ion-item-options side="left">
+        <button *ngIf="!plusOned" class="big-side-btn" (click)="plusOne()">+1</button>
+        <button *ngIf="plusOned" class="side-btn" ion-button (click)="removeOne()">undo</button>
+      </ion-item-options>
+  </ion-item-sliding>

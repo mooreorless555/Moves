@@ -1,0 +1,17 @@
+user-bubble {
+
+    .user-bubble {
+        display: inline-block !important;
+        position: relative;
+        top: 15px;
+        z-index: 99;
+        // height: 30% !important;
+        // width: 30% !important;
+    }
+
+    .image-size {
+        height: 120% !important;
+        width: 120% !important;
+        margin-bottom: -50px !important;   
+    }
+}
