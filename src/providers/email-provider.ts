@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as CONSTANTS from '../constants.js';
 import 'rxjs/add/operator/map';
 
 declare var emailjs: any;
@@ -18,7 +19,7 @@ export class EmailProvider {
 
     constructor() {
         console.log('Hello EmailProvider Provider');
-
+        emailjs.init(CONSTANTS.KEYS.EMAILJS);
     }
 
     sendEmail(to_email: string, college: any, to_name: string, code: string) {

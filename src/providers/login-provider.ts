@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { DatabaseProvider } from '../providers/database-provider';
 import { Facebook } from '@ionic-native/facebook';
+import * as CONSTANTS from '../constants.js';
 import 'rxjs/add/operator/map';
 
 /*
@@ -129,19 +130,9 @@ export class MoveUser {
  */
   constructor(public facebook: Facebook, public db: DatabaseProvider) {
 
-  var firebaseConfig = {
-      apiKey: "AIzaSyANmdr_oNcjak8eVKUI7esAoyk4mtWKD-M",
-      authDomain: "moves-ad1b4.firebaseapp.com",
-      databaseURL: "https://moves-ad1b4.firebaseio.com",
-      projectId: "moves-ad1b4",
-      storageBucket: "moves-ad1b4.appspot.com",
-      messagingSenderId: "583373480587"
-    };
-
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(CONSTANTS.FIREBASE_CONFIG)
     let fbid = this.getFB().id
     this.getFriendRequests(fbid)
-    // this.getFriendsListArr(fbid)
   }
 
   initUser(success, token, updatedVal, email) {

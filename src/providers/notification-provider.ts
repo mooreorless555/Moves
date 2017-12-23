@@ -10,6 +10,8 @@ import { System } from '../pages/functions/functions';
 import { LocationTracker } from '../providers/location-tracker';
 import { DatabaseProvider } from '../providers/database-provider';
 import firebase from 'firebase';
+import { KEYS } from '../constants.js';
+
 // import { System } from '../pages/functions/functions';
 import 'rxjs/add/operator/map';
 
@@ -224,7 +226,7 @@ export class NotificationProvider {
     
         var headers = {
           "Content-Type": "application/json; charset=utf-8",
-          "Authorization": "Basic NWM0YjA3MWQtMTNmNi00MDMyLWI1MzMtZjBkNmYxNmUxZTg0"
+          "Authorization": `Basic ${KEYS.ONE_SIGNAL}`
         };
         
         var options = {

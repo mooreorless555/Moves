@@ -77,18 +77,7 @@ export class MyApp {
     public np: NotificationProvider,
     public ns: NativeStorage) {
   
-
-  //   let firebaseConfig = {
-  //     apiKey: "AIzaSyANmdr_oNcjak8eVKUI7esAoyk4mtWKD-M",
-  //     authDomain: "moves-ad1b4.firebaseapp.com",
-  //     databaseURL: "https://moves-ad1b4.firebaseio.com",
-  //     projectId: "moves-ad1b4",
-  //     storageBucket: "moves-ad1b4.appspot.com",
-  //     messagingSenderId: "583373480587"
-  //   };
-
-  // firebase.initializeApp(firebaseConfig)
-
+      
       $('ion-nav').addClass('invisible');
       if (this.platform.is('cordova')) splashScreen.hide();
       setTimeout(() => {
