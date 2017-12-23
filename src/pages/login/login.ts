@@ -3,7 +3,7 @@ import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { NativeStorage } from '@ionic-native/native-storage';
 
-import { ToastController, Platform} from 'ionic-angular';
+import { ToastController, Platform } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { NavController } from 'ionic-angular';
 
@@ -22,6 +22,7 @@ import swal from 'sweetalert2';
 
 declare var $: any;
 declare var velocity: any;
+declare var FB: any;
 
 //var url = 'http://54.175.164.247:80/';
 
@@ -50,23 +51,23 @@ export class LoginPage {
     this.introducePage();
   }
 
-  constructor(public loginProvider: LoginProvider, 
-              public platform: Platform,
-              public ep: EmailProvider, 
-              public ns: NativeStorage, 
-              private mUser: MoveUser, 
-              private facebook: Facebook, 
-              public system: System, 
-              public globals: Globals, 
-              public http: Http, 
-              public navCtrl: NavController, 
-              public toastCtrl: ToastController, 
-              public alertCtrl: AlertController,
-              public db: DatabaseProvider) {
+  constructor(public loginProvider: LoginProvider,
+    public platform: Platform,
+    public ep: EmailProvider,
+    public ns: NativeStorage,
+    private mUser: MoveUser,
+    private facebook: Facebook,
+    public system: System,
+    public globals: Globals,
+    public http: Http,
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
+    public db: DatabaseProvider) {
 
 
-                this.ep.sendMailjetEmail();
-                this.getData();
+    this.ep.sendMailjetEmail();
+    this.getData();
 
   }
 
@@ -139,59 +140,59 @@ export class LoginPage {
     let g = this.globals.fb;
     let me = this;
     this.ns.getItem('accessToken')
-    /* User already has an access token. */
-    .then(accessToken => {
-      this.ns.getItem('firstName')
-      .then(firstName => {
-      this.login(accessToken, firstName)
+      /* User already has an access token. */
+      .then(accessToken => {
+        this.ns.getItem('firstName')
+          .then(firstName => {
+            this.login(accessToken, firstName)
+          })
+          .catch(() => {
+            this.login(accessToken)
+          })
       })
+      /* First Time Facebook Login */
       .catch(() => {
-        this.login(accessToken)
+        this.facebook.login(g.perms).then((response) => {
+          var accessToken = response.authResponse.accessToken;
+          this.login(accessToken);
+        })
       })
-    })
-    /* First Time Facebook Login */
-    .catch(() => {
-      this.facebook.login(g.perms).then((response) => {
-        var accessToken = response.authResponse.accessToken;
-        this.login(accessToken);
-      })
-    })
   }
 
   async login(token, firstName?: string) {
 
     var me = this;
-    var exitFunc = function() {
+    var exitFunc = function () {
       me.platform.exitApp();
     }
     let updatedVal = await this.db.get('value', '/serverInfo/updates/facebook');
-  
+
     $('#loginBtn').prop('disabled', true);
     setTimeout(() => {
       $('#fadeOut').velocity('transition.fadeIn', { duration: 500 })
       setTimeout(() => {
-      const facebookCredential = firebase.auth.FacebookAuthProvider.credential(token);
-      var params = new Array();
-      var g = this.globals.fb;
-      this.system.appLoader("What's good " + (firstName ? firstName : "") + "?");
-      return Promise.all([firebase.auth().signInWithCredential(facebookCredential), this.facebook.api(g.apifields, params)])
-      .then(success => {
-                this.system.loader.dismiss();
-                this.ns.setItem('accessToken', token);
-                this.ns.setItem('firstName', success[1].first_name);
-                this.mUser.setFB(success);
-                this.mUser.initUser(success, token, updatedVal, this.firsttime.email).then(result => {
-                  if (result[1]) {
-                    this.system.welcomeUser(result[0].first_name)
-                  }
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(token);
+        var params = new Array();
+        var g = this.globals.fb;
+        this.system.appLoader("What's good " + (firstName ? firstName : "") + "?");
+        return Promise.all([firebase.auth().signInWithCredential(facebookCredential), this.facebook.api(g.apifields, params)])
+          .then(success => {
+            this.system.loader.dismiss();
+            this.ns.setItem('accessToken', token);
+            this.ns.setItem('firstName', success[1].first_name);
+            this.mUser.setFB(success);
+            this.mUser.initUser(success, token, updatedVal, this.firsttime.email).then(result => {
+              if (result[1]) {
+                this.system.welcomeUser(result[0].first_name)
+              }
 
-                  $('#fadeOut').velocity('transition.fadeIn', { duration: 500 })
-                  this.navCtrl.setRoot(TabsPage);
-                })       
-      }).catch(error => {
-        this.system.loader.dismiss();
-        setTimeout(() => this.system.simpleAlert('Looks like we ran into a problem.<br><br>'+JSON.stringify(error)+`<br><br>Uninstalling and reinstalling Moves will usually fix these errors, but please send us a screenshot of the error at movesbot@gmail.com so we can figure out what happened. Sorry about that!`, 'Yikes!', "Quit", exitFunc, false), 800)
-      })
+              $('#fadeOut').velocity('transition.fadeIn', { duration: 500 })
+              this.navCtrl.setRoot(TabsPage);
+            })
+          }).catch(error => {
+            this.system.loader.dismiss();
+            setTimeout(() => this.system.simpleAlert('Looks like we ran into a problem.<br><br>' + JSON.stringify(error) + `<br><br>Uninstalling and reinstalling Moves will usually fix these errors, but please send us a screenshot of the error at movesbot@gmail.com so we can figure out what happened. Sorry about that!`, 'Yikes!', "Quit", exitFunc, false), 800)
+          })
       }, 600);
     }, 800);
   }
@@ -225,28 +226,37 @@ export class LoginPage {
     toast.present();
   }
 
-  beginLogin() {
+  async authenticate() {
+    let def = new $.Deferred();
+    let g = this.globals.fb;
+    return firebase.auth().signInAnonymously();
+  }
+
+  async beginLogin() {
     let debug = this.globals.debugflag
     if (!debug) { // if debug mode is off
-      this.ns.getItem('verified').then( data => {
+      this.ns.getItem('verified').then(data => {
         if (!data.verified) {
           // this.selectCollege();
           this.presentNewPrompt();
         } else {
-          this.ns.getItem('code').then( data => {
-            this.presentConfirmCode(this.firsttime.email, this.firsttime.code, true)   
+          this.ns.getItem('code').then(data => {
+            this.presentConfirmCode(this.firsttime.email, this.firsttime.code, true)
           })
-          this.determineAuthStatus()  
+          this.determineAuthStatus()
         }
       }).catch(error => {
         // this.selectCollege();
-        this.presentNewPrompt();  
+        this.presentNewPrompt();
       })
     } else {
-       $('#fadeOut').velocity('transition.fadeIn', { duration: 500 })
-       setTimeout(() => {
-         this.navCtrl.setRoot(TabsPage);
-       }, 800)
+      this.authenticate().then(() => {
+        this.mUser.isDev = true;
+        $('#fadeOut').velocity('transition.fadeIn', { duration: 500 })
+        setTimeout(() => {
+          this.navCtrl.setRoot(TabsPage);
+        }, 800)
+      })
     }
   }
 
@@ -331,28 +341,28 @@ export class LoginPage {
   presentNewPrompt() {
 
     $('#loginBtn').prop('disabled', true);
-    setTimeout(() => { 
-    // Get storage data
-    this.ns.getItem('code').then(code => {
-      this.ns.getItem('email').then(email => {
-        this.presentConfirmCode(email, code, true);
-        $('#loginBtn').prop('disabled', false);
-      })
-    }).catch(() => {
-      let collegeRawList = this.globals.colleges;
-      let colleges = this.globals.collegesJSON;
-      console.log(colleges);
-      console.log(collegeRawList);
-      let collegeJSON = {};
-  
-      for (var college of collegeRawList) {
-        collegeJSON[college.key] = college.name;
-      }
+    setTimeout(() => {
+      // Get storage data
+      this.ns.getItem('code').then(code => {
+        this.ns.getItem('email').then(email => {
+          this.presentConfirmCode(email, code, true);
+          $('#loginBtn').prop('disabled', false);
+        })
+      }).catch(() => {
+        let collegeRawList = this.globals.colleges;
+        let colleges = this.globals.collegesJSON;
+        console.log(colleges);
+        console.log(collegeRawList);
+        let collegeJSON = {};
 
-      let buttons = "";
-      for (let college of collegeRawList) {
-        buttons += "<button id=" + college.key + " class='swal2-styled' style='width: 100% !important; background-color: " + '#886fe8' + " !important; border-radius: 20px; padding: 20px; font-weight: 800em !important; font-family: 'TruLato' !important; color: #fff; font-size: 20px !important;'>" + college.name + "</button>"
-      }
+        for (var college of collegeRawList) {
+          collegeJSON[college.key] = college.name;
+        }
+
+        let buttons = "";
+        for (let college of collegeRawList) {
+          buttons += "<button id=" + college.key + " class='swal2-styled' style='width: 100% !important; background-color: " + '#886fe8' + " !important; border-radius: 20px; padding: 20px; font-weight: 800em !important; font-family: 'TruLato' !important; color: #fff; font-size: 20px !important;'>" + college.name + "</button>"
+        }
         swal({
           title: 'Where do you go?',
           showConfirmButton: false,
@@ -368,107 +378,107 @@ export class LoginPage {
           })
         }
       })
-    $('#loginBtn').prop('disabled', false);
+      $('#loginBtn').prop('disabled', false);
     }, 800);
   }
 
-    enterEmail(collegeKey) {
-      // First, get specified college:
-      let college = collegeKey;
-      let inputValFunc = function (value) {
-        return new Promise(function (resolve, reject) {
-          if (!value) {
-            reject('Please type your college email in the space above.');
-          } else if (!value.endsWith(college.emailSuffix)) {
-            reject(`This isn't a valid ${college.nickname} email.`);
-          } else {
-            resolve();
-          }
-        })
-      }
-      this.system.easyInput(`Sweet. Before we let you sign in, we just need to confirm that you have a <b>${college.emailSuffix}</b> email.<br>Type it in below and we'll send you a verification code.`,
+  enterEmail(collegeKey) {
+    // First, get specified college:
+    let college = collegeKey;
+    let inputValFunc = function (value) {
+      return new Promise(function (resolve, reject) {
+        if (!value) {
+          reject('Please type your college email in the space above.');
+        } else if (!value.endsWith(college.emailSuffix)) {
+          reject(`This isn't a valid ${college.nickname} email.`);
+        } else {
+          resolve();
+        }
+      })
+    }
+    this.system.easyInput(`Sweet. Before we let you sign in, we just need to confirm that you have a <b>${college.emailSuffix}</b> email.<br>Type it in below and we'll send you a verification code.`,
       "Send Verification Code",
       `So you go to ${college.nickname}?`,
       `Your ${college.nickname} email`,
       "",
       false,
       inputValFunc).then(data => {
-              data = data.trim()
-              this.firsttime.email = data
-  
+        data = data.trim()
+        this.firsttime.email = data
+
         this.db.get('value', 'serverInfo/emailLock').then((result) => {
-                console.log("Email Lock: " + JSON.stringify(result))
-                if (data.endsWith(college.emailSuffix)) { // Change this back to @yale.edu to filter out Yale emails.
-                  if (data == college.emailSuffix) {
-                    this.presentError("This on its own isn't an email.");
-                    return false;
-                  }
-                  else {
-                    this.firsttime.email = this.firsttime.email.toLowerCase()
-                    this.firsttime.code = this.generateCode(6);
-                    this.ns.setItem('code', this.firsttime.code)
-                    this.ns.setItem('email', this.firsttime.email)
-                    let email = this.firsttime.email;
-                    let code = this.firsttime.code;
-                    let name = email.split('.')[0];
-                    name = this.jsUcfirst(name);
-                    // Send email verification.
-                    this.system.appLoader('Sending email...');
-                    this.ep.sendEmail(email, college, name, code)
-                    .then(() => {
-                      this.system.loader.dismiss()
-                      this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
-                    })
-                    .catch(err => {
-                      this.presentError("Seems like there was an issue sending the email. Wait a couple of minutes and then try this again. Sorry about that!")
-                      this.system.loader.dismiss()
-                    })
-                  }
-                } else {
-                  if (result == 0) {
-                    this.firsttime.email = this.firsttime.email.toLowerCase()
-                    this.firsttime.code = this.generateCode(6);
-                    this.ns.setItem('code', this.firsttime.code)
-                    this.ns.setItem('email', this.firsttime.email)
-                    let email = this.firsttime.email;
-                    let code = this.firsttime.code;
-                    let name = email.split('.')[0];
-                    name = this.jsUcfirst(name);
-                    // Send email verification.
-                    this.system.appLoader('Sending email...');
-                    this.ep.sendEmail(email, college, name, code)
-                    .then(() => {
-                      this.system.loader.dismiss()
-                      this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
-                    })
-                    .catch(err => this.presentError("Seems like there was an issue sending the email. ERROR: " + err))
-                  } else {
-                  this.presentError("You didn't type in a valid " + college.nickname + " email.");
-                  return false;
-                  }
-                }
-              })
+          console.log("Email Lock: " + JSON.stringify(result))
+          if (data.endsWith(college.emailSuffix)) { // Change this back to @yale.edu to filter out Yale emails.
+            if (data == college.emailSuffix) {
+              this.presentError("This on its own isn't an email.");
+              return false;
+            }
+            else {
+              this.firsttime.email = this.firsttime.email.toLowerCase()
+              this.firsttime.code = this.generateCode(6);
+              this.ns.setItem('code', this.firsttime.code)
+              this.ns.setItem('email', this.firsttime.email)
+              let email = this.firsttime.email;
+              let code = this.firsttime.code;
+              let name = email.split('.')[0];
+              name = this.jsUcfirst(name);
+              // Send email verification.
+              this.system.appLoader('Sending email...');
+              this.ep.sendEmail(email, college, name, code)
+                .then(() => {
+                  this.system.loader.dismiss()
+                  this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
+                })
+                .catch(err => {
+                  this.presentError("Seems like there was an issue sending the email. Wait a couple of minutes and then try this again. Sorry about that!")
+                  this.system.loader.dismiss()
+                })
+            }
+          } else {
+            if (result == 0) {
+              this.firsttime.email = this.firsttime.email.toLowerCase()
+              this.firsttime.code = this.generateCode(6);
+              this.ns.setItem('code', this.firsttime.code)
+              this.ns.setItem('email', this.firsttime.email)
+              let email = this.firsttime.email;
+              let code = this.firsttime.code;
+              let name = email.split('.')[0];
+              name = this.jsUcfirst(name);
+              // Send email verification.
+              this.system.appLoader('Sending email...');
+              this.ep.sendEmail(email, college, name, code)
+                .then(() => {
+                  this.system.loader.dismiss()
+                  this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
+                })
+                .catch(err => this.presentError("Seems like there was an issue sending the email. ERROR: " + err))
+            } else {
+              this.presentError("You didn't type in a valid " + college.nickname + " email.");
+              return false;
+            }
+          }
+        })
       })
-    }
-  
+  }
+
   presentPrompt() {
     $('#loginBtn').prop('disabled', true);
-    setTimeout(() => { 
-    this.ns.getItem('code').then(code => {
-      this.ns.getItem('email').then(email => {
-        this.presentConfirmCode(email, code, true)
-        $('#loginBtn').prop('disabled', false)
-      })
-    }).catch(() => {
-this.system.simpleInput("Before we let you sign in, we just need to confirm that you have a <b>@yale.edu</b> email.<br>Type it in below and we'll send you a verification code.",
-    "Send Confirmation",
-    "First Time",
-    "Yale Email",
-    "").then(data => {
+    setTimeout(() => {
+      this.ns.getItem('code').then(code => {
+        this.ns.getItem('email').then(email => {
+          this.presentConfirmCode(email, code, true)
+          $('#loginBtn').prop('disabled', false)
+        })
+      }).catch(() => {
+        this.system.simpleInput("Before we let you sign in, we just need to confirm that you have a <b>@yale.edu</b> email.<br>Type it in below and we'll send you a verification code.",
+          "Send Confirmation",
+          "First Time",
+          "Yale Email",
+          "").then(data => {
             data = data.trim()
             this.firsttime.email = data
 
-      this.db.get('value', 'serverInfo/emailLock').then((result) => {
+            this.db.get('value', 'serverInfo/emailLock').then((result) => {
               console.log("Email Lock: " + JSON.stringify(result))
               if (data.endsWith("@yale.edu")) { // Change this back to @yale.edu to filter out Yale emails.
                 if (data == "@yale.edu") {
@@ -487,14 +497,14 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
                   // Send email verification.
                   this.system.appLoader('Sending email...');
                   this.ep.sendEmail(email, [], name, code)
-                  .then(() => {
-                    this.system.loader.dismiss()
-                    this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
-                  })
-                  .catch(err => {
-                    this.presentError("Seems like there was an issue sending the email. Wait a couple of minutes and then try this again. Sorry about that!")
-                    this.system.loader.dismiss()
-                  })
+                    .then(() => {
+                      this.system.loader.dismiss()
+                      this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
+                    })
+                    .catch(err => {
+                      this.presentError("Seems like there was an issue sending the email. Wait a couple of minutes and then try this again. Sorry about that!")
+                      this.system.loader.dismiss()
+                    })
                 }
               } else {
                 if (result == 0) {
@@ -509,20 +519,21 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
                   // Send email verification.
                   this.system.appLoader('Sending email...');
                   this.ep.sendEmail(email, [], name, code)
-                  .then(() => {
-                    this.system.loader.dismiss()
-                    this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
-                  })
-                  .catch(err => this.presentError("Seems like there was an issue sending the email. ERROR: " + err))
+                    .then(() => {
+                      this.system.loader.dismiss()
+                      this.presentConfirmCode(this.firsttime.email, this.firsttime.code)
+                    })
+                    .catch(err => this.presentError("Seems like there was an issue sending the email. ERROR: " + err))
                 } else {
-                this.presentError("You didn't type in a valid Yale email.");
-                return false;
+                  this.presentError("You didn't type in a valid Yale email.");
+                  return false;
                 }
               }
             })
-    })
-      $('#loginBtn').prop('disabled', false)
-    })}, 800)
+          })
+        $('#loginBtn').prop('disabled', false)
+      })
+    }, 800)
   }
 
   presentConfirmCode(email: string, code: string, extra?: boolean) {
@@ -533,31 +544,31 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
     diag = verifyDialog + diag;
 
     let inputValFunc = function (value) {
-        return new Promise(function (resolve, reject) {
-          if (!value) {
-            reject('Please type the code you received by email in the space above.');
-          } else if (value == code) {
-            resolve();
-          } else {
-            reject("The verification code is wrong. Please try again.");
-          }
-        })
-      }
+      return new Promise(function (resolve, reject) {
+        if (!value) {
+          reject('Please type the code you received by email in the space above.');
+        } else if (value == code) {
+          resolve();
+        } else {
+          reject("The verification code is wrong. Please try again.");
+        }
+      })
+    }
 
-    this.system.easyInput(diag, "Verify", "Your code is on its way!", "Enter code here", "",false,
-  inputValFunc).then(data => {
-          if (data == code) {
-                this.presentVerified()
-              } else if (data.trim() == '') {
-                this.presentError("You didn't even enter anything into the box.");
-                return false;
-              } else {
-                this.presentError("The verification code you entered was wrong!");
-                return false;
-              }
-    })
-    
-    $('#tap-here-btn').on('click', function() {
+    this.system.easyInput(diag, "Verify", "Your code is on its way!", "Enter code here", "", false,
+      inputValFunc).then(data => {
+        if (data == code) {
+          this.presentVerified()
+        } else if (data.trim() == '') {
+          this.presentError("You didn't even enter anything into the box.");
+          return false;
+        } else {
+          this.presentError("The verification code you entered was wrong!");
+          return false;
+        }
+      })
+
+    $('#tap-here-btn').on('click', function () {
       swal.close();
       me.ns.remove('code').then(() => {
         me.presentPrompt();
@@ -581,11 +592,11 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
       title: "Got it!",
       message: "Sweeeet, you've been verified. Welcome to Moves!",
       buttons: [{
-          text: 'Continue',
-          handler: data => {
-            this.determineAuthStatus()
-          }
-        }]
+        text: 'Continue',
+        handler: data => {
+          this.determineAuthStatus()
+        }
+      }]
     });
     this.ns.remove('code')
     this.determineAuthStatus()
@@ -594,7 +605,7 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
   }
 
   verifyUser() {
-    this.ns.setItem('verified', {verified: true});
+    this.ns.setItem('verified', { verified: true });
   }
 
 
@@ -608,9 +619,8 @@ this.system.simpleInput("Before we let you sign in, we just need to confirm that
     return code;
   }
 
-  jsUcfirst(string) 
-  {
-      return string.charAt(0).toUpperCase() + string.slice(1);
+  jsUcfirst(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
 }

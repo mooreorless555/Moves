@@ -52,6 +52,8 @@ export class MoveUser {
   subscription: any;
   friendRequestsListArr = [];
 
+  isDev: boolean = false;
+
   numFriendRequests: number;
 
   null_user = {
@@ -241,7 +243,7 @@ export class MoveUser {
   
 
   get() {
-    if (!firebase.auth().currentUser) return this.null_user;
+    if (!firebase.auth().currentUser || this.isDev) return this.null_user;
     return firebase.auth().currentUser;
   }
 
@@ -268,7 +270,7 @@ export class MoveUser {
   }
 
   getFB() {
-    if (!firebase.auth().currentUser) return this.null_user.providerData;
+    if (!firebase.auth().currentUser || this.isDev) return this.null_user.providerData;
     return this.providerData[1];
   }
 
