@@ -15,7 +15,7 @@ import { MovesProvider } from '../../providers/moves-provider';
 import { System, Globals } from '../functions/functions';
 import { Tutorial, NotificationProvider } from '../../providers/notification-provider';
 import { ServerStatusProvider } from '../../providers/server-status-provider';
-
+import * as CONSTANTS from '../../constants.js';
 import { LocationTracker } from '../../providers/location-tracker';
 
 declare var ProgressBar: any;
@@ -101,7 +101,7 @@ this.checks = setTimeout(() => {
           var type;
 
           // OneSignal Init
-          this.oneSignal.startInit('73988abc-df1b-455e-b71c-03e817ba9c9a', '583373480587');
+          this.oneSignal.startInit(CONSTANTS.APP_IDs.ONE_SIGNAL, CONSTANTS.SECRET.ONE_SIGNAL);
           
           this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
           

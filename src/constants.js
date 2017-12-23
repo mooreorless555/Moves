@@ -4,6 +4,14 @@ export const KEYS = {
     EMAILJS:    "user_YIRPAcDCfcv1FXy8VIWX5" 
 }
 
+export const APP_IDs = {
+    ONE_SIGNAL: "73988abc-df1b-455e-b71c-03e817ba9c9a"
+}
+
+export const SECRET = {
+    ONE_SIGNAL: "583373480587"
+}
+
 export const FIREBASE_CONFIG = {
       apiKey:            "AIzaSyANmdr_oNcjak8eVKUI7esAoyk4mtWKD-M",
       authDomain:        "moves-ad1b4.firebaseapp.com",
