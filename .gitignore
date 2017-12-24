@@ -3,7 +3,7 @@
 
 *~
 *.sw[mnpcod]
-*.log
+*.bat*.log
 *.tmp
 *.tmp.*
 log.txt
@@ -39,4 +39,4 @@ UserInterfaceState.xcuserstate
 backend/models/move.js
 backend/README.md
 buildmoves.bat
-initmoves.bat
+initmoves.batwww_old/
