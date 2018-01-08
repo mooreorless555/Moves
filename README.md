@@ -6,7 +6,7 @@
 
 <img src="https://i.imgur.com/L4ygdW6.jpg" width="300"/>
 
-**Moves** is a fun real-time app that allows students on Yale’s campus to identify the parties they want to attend. Using live, user-generated reviews, and a built-in social network that interfaces with the Facebook API and geolocation services. The app is currently used by 20% of Yale undergraduates. (Currently listed as MovesY in the Google Play and iOS App stores) The plan is to expand the app to other campuses.
+**Moves** is a fun real-time app that allows students on Yaleâ€™s campus to identify the parties they want to attend. Using live, user-generated reviews, and a built-in social network that interfaces with the Facebook API and geolocation services. The app is currently used by 25% of Yale undergraduates. (Currently listed as MovesY in the Google Play and iOS App stores) The plan is to expand the app to other campuses.
 
 ### Frameworks/Libraries
 Moves is an iOS/Android app written using [Ionic](http://ionicframework.com/), [Angular 4](http://angular.io/) and a lot of HTML/CSS/JS. The backend uses [Firebase](https://firebase.google.com/). The graphics were done in Photoshop and Illustrator. This app is my baby.
